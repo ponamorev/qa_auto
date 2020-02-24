@@ -22,7 +22,7 @@ public class Driver {
         initProperties();
         if (webDriver == null) {
             log.info("WebDriver is null, initiate new WebDriver");
-            return new ChromeDriver();
+            webDriver = new ChromeDriver();
         }
         return webDriver;
     }
