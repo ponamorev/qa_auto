@@ -35,6 +35,7 @@ public class BbcComTest {
         searchInput.submit();
         WebElement firstResultLink = driver.findElement(By.cssSelector(".search-results li:first-child div a"));
         firstResultLink.click();
+        log.info("Name of the first element - {}", firstResultLink.getText());
     }
 
     @AfterEach
