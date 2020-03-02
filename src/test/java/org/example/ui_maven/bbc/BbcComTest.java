@@ -1,4 +1,4 @@
-package org.example.ui_maven;
+package org.example.ui_maven.bbc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.ui_maven.drivers.Driver;

@@ -39,7 +39,7 @@
         <appender-ref ref="ERROR"/>
         <appender-ref ref="STDOUT"/>
     </root>
-    <logger name="org.example.ui_maven.drivers.TestDebugClass" level="DEBUG">
+    <logger name="org.example.ui_maven.other.TestDebugClass" level="DEBUG">
         <appender-ref ref="DEBUG"/>
     </logger>
 </configuration>

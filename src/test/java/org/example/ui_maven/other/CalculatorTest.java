@@ -1,6 +1,6 @@
-package org.example.ui_maven;
+package org.example.ui_maven.other;
 
-import org.example.ui_maven.drivers.Calculator;
+import org.example.ui_maven.other.Calculator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
