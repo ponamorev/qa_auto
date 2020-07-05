@@ -1,42 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<configuration>
-    <appender name="INFO" class="ch.qos.logback.core.FileAppender">
-        <file>log/info.log</file>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%date [%thread] %-5level [%file:%line] %msg%n</Pattern>
-        </encoder>
-    </appender>
-    <appender name="ERROR" class="ch.qos.logback.core.FileAppender">
-        <file>log/error.log</file>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%date [%thread] %-5level [%file:%line] %msg%n</Pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
-    <appender name="DEBUG" class="ch.qos.logback.core.FileAppender">
-        <file>log/debug.log</file>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%date [%thread] %-5level [%file:%line] %msg%n</Pattern>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>DEBUG</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-    </appender>
+<configuration> <!-- debug="true" - add this attribute to configuration tag for printing status info. It works only if configuration file was found and wasn't malformed XML
+                     scan="true" - add this attribute to configuration tag for reloading configuration info
+                     scanPeriod="30 seconds" - this attribute configures timeout between configuration changes scanning
+                     packagingData="true" - this attribute add information about package/jar for stacktrace in logging -->
+    <!--<statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />-->
+    <!-- Uncommented the line above to print status information in console for each run -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%date [%thread] %-5level [%file:%line] %msg%n</Pattern>
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <root level="info">
-        <appender-ref ref="INFO"/>
-        <appender-ref ref="ERROR"/>
+    <root level="debug">
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>
