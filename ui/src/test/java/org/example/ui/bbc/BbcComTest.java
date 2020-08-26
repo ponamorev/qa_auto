@@ -33,7 +33,7 @@ public class BbcComTest {
         log.info("Is Web Element by id {} enabled? A: {}", "orb-search-q", isSearchEnabled);
         searchInput.sendKeys("COVID-19");
         searchInput.submit();
-        WebElement firstResultLink = driver.findElement(By.cssSelector(".css-4lyrcg-Promo.ett16tt11:first-child p:first-child"));
+        WebElement firstResultLink = driver.findElement(By.xpath("(//a[contains(@class,'PromoLink')])[1]"));
         log.info("Name of the first element - {}", firstResultLink.getText());
         firstResultLink.click();
     }
