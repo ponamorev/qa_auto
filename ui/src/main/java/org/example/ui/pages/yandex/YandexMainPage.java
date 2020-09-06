@@ -25,6 +25,10 @@ public class YandexMainPage extends BasePage {
         return new GeoPositionPage(driver);
     }
 
+    public String getGeoPosition() {
+        return geoLink.getText();
+    }
+
     public void clickMoreMenuButton() {
         menuMoreButton.click();
     }

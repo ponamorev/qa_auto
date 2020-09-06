@@ -30,6 +30,9 @@ public class YandexMoreTest {
         geoPositionPage.clearCityInput();
         geoPositionPage.setCityToInputLine("Лондон");
         mainPage = geoPositionPage.chooseCityFromPopup();
+        Assertions.assertEquals("Лондон",
+                mainPage.getGeoPosition(),
+                "Геопозиция не выставлена, ожидаемый город - Лондон");
         mainPage.clickMoreMenuButton();
         List<String> londonMoreMenuContent = mainPage.getMoreMenuContent();
 
@@ -37,6 +40,9 @@ public class YandexMoreTest {
         geoPositionPage.clearCityInput();
         geoPositionPage.setCityToInputLine("Париж");
         mainPage = geoPositionPage.chooseCityFromPopup();
+        Assertions.assertEquals("Париж",
+                mainPage.getGeoPosition(),
+                "Геопозиция не выставлена, ожидаемый город - Париж");
         mainPage.clickMoreMenuButton();
         List<String> parisMoreMenuContent = mainPage.getMoreMenuContent();
 

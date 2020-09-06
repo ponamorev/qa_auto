@@ -4,13 +4,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.List;
-
 public class GeoPositionPage extends BasePage {
     @FindBy(id = "city__front-input")
     private WebElement cityInput;
-    @FindBy(css = ".popup__items li")
-    private List<WebElement> popupCitiesList;
+    @FindBy(css = ".popup__items li:first-child")
+    private WebElement popupFirstCity;
 
     public GeoPositionPage(WebDriver driver) {
         super(driver);
@@ -26,7 +24,8 @@ public class GeoPositionPage extends BasePage {
     }
 
     public YandexMainPage chooseCityFromPopup() {
-        popupCitiesList.get(0).click();
+        cityInput.click();
+        popupFirstCity.click();
         return new YandexMainPage(driver);
     }
 }
