@@ -7,15 +7,13 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class YandexMainPage {
+public class YandexMainPage extends BasePage {
     private final By geoPositionLinkBy = By.cssSelector(".link_geosuggest_yes");
     private final By moreMenuButtonBy = By.cssSelector("div.services-new__more-icons");
     private final By moreMenuContentBy = By.cssSelector("div.services-new__more-popup-content a");
 
-    private final WebDriver driver;
-
     public YandexMainPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
 
     public GeoPositionPage clickGeoPositionLink() {
