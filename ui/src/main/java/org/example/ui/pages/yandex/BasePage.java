@@ -2,6 +2,7 @@ package org.example.ui.pages.yandex;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public abstract class BasePage {
@@ -15,5 +16,9 @@ public abstract class BasePage {
     protected BasePage(WebDriver driver) {
         this.driver = driver;
         waitForPageToBeLoaded();
+    }
+
+    protected void init(BasePage page) {
+        PageFactory.initElements(driver, page);
     }
 }
