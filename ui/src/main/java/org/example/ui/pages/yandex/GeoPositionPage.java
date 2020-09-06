@@ -1,33 +1,28 @@
 package org.example.ui.pages.yandex;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
 
 public class GeoPositionPage {
-    @FindBy(id = "city__front-input")
-    private WebElement cityInput;
-    @FindBy(css = ".popup__items li")
-    private List<WebElement> citiesPopup;
+    private final By cityInputBy = By.id("city__front-input");
+    private final By citiesListPopupBy = By.cssSelector(".popup__items li");
 
-    private WebDriver driver;
+    private final WebDriver driver;
 
     public GeoPositionPage(WebDriver driver) {
         this.driver = driver;
     }
 
     public void clearCityInput() {
-        cityInput.clear();
+        driver.findElement(cityInputBy).clear();
     }
 
     public void setCityToInputLine(String city) {
-        cityInput.sendKeys(city);
+        driver.findElement(cityInputBy).sendKeys(city);
     }
 
     public YandexMainPage chooseCityFromPopup() {
-        citiesPopup.get(0).click();
+        driver.findElements(citiesListPopupBy).get(0).click();
         return new YandexMainPage(driver);
     }
 }
