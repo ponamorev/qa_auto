@@ -28,20 +28,14 @@ public class LoginYandexTest extends BaseYandexTest {
         tabs.remove(mainPageTab);
         driver.switchTo().window(tabs.iterator().next());
         loginPage = new LoginPage(driver);
-        String loginPageTab = driver.getWindowHandle();
         loginPage.clickLoginNameInput();
         loginPage.loginNameInputSendKeys(loginName);
         loginPage.clickSubmitButton();
         loginPage.clickLoginPasswordInput();
         loginPage.loginPasswordInputSendKeys(loginPass);
         loginPage.clickSubmitButton();
-        mainPage.clickLoginButton();
-        tabs = driver.getWindowHandles();
-        tabs.remove(loginPageTab);
-        tabs.remove(mainPageTab);
-        driver.switchTo().window(tabs.iterator().next());
         mailPage = new MailPage(driver);
         mailPage.clickAccountButton();
-        Assertions.assertEquals(loginName, mailPage.getUserName());
+        Assertions.assertTrue(mailPage.getUserName().contains(loginName));
     }
 }
