@@ -4,3 +4,5 @@ out/
 *.iml
 log/
 */*.iml
+*/allure-results
+*/.allure
