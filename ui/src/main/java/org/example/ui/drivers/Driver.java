@@ -27,6 +27,11 @@ public class Driver {
         return webDriver;
     }
 
+    public static void closeDriver() {
+        webDriver.quit();
+        webDriver = null;
+    }
+
     private static void initProperties() {
         if (webDriverProperties == null) {
             webDriverProperties = new Properties();

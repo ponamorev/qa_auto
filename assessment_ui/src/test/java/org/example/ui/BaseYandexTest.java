@@ -32,7 +32,7 @@ public abstract class BaseYandexTest {
 
     @AfterAll
     protected static void tearDown() {
-        driver.quit();
+        Driver.closeWebDriver();
     }
 
     private static void initProperties() {
