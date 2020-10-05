@@ -4,7 +4,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public abstract class BasePage {
+abstract class BasePage {
     protected WebDriver driver;
 
     protected void waitForPageToBeLoaded() {
