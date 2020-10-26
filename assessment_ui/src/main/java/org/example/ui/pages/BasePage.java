@@ -1,5 +1,7 @@
 package org.example.ui.pages;
 
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
@@ -22,6 +24,7 @@ abstract class BasePage {
         pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
     }
 
+    @Step(value = "Получить WebElement")
     protected WebElement getElement(By element, boolean isClickable) {
         WebElement foundElement = null;
         try {
@@ -37,9 +40,15 @@ abstract class BasePage {
                     ? new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element))
                     : new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(element));
         } catch (TimeoutException e) {
+            saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             log.error("Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
             Assertions.fail(String.format("Element [%s] wasn't found by implicit and explicit wait. Check the selector is correct", element));
         }
         return foundElement;
+    }
+
+    @Attachment(value = "Снимок экрана", type = "image/png")
+    private byte[] saveScreenshot(byte[] screenShot) {
+        return screenShot;
     }
 }

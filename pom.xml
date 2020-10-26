@@ -48,7 +48,7 @@
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
                     <systemPropertyVariables>
-                        <allure.results.directory>${project.basedir}/allure-results/${maven.build.timestamp}</allure.results.directory>
+                        <allure.results.directory>${project.basedir}/allure-results<!--/${maven.build.timestamp}--></allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>

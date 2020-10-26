@@ -19,7 +19,7 @@
                 <version>2.10.0</version>
                 <configuration>
                     <reportVersion>${allure.version}</reportVersion>
-                    <resultsDirectory>${project.basedir}/allure-results/${maven.build.timestamp}</resultsDirectory>
+                    <resultsDirectory>${project.basedir}/allure-results<!--/${maven.build.timestamp}--></resultsDirectory>
                     <allureDownloadUrl>https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/${allure.version}/allure-commandline-${allure.version}.zip</allureDownloadUrl>
                 </configuration>
             </plugin>
