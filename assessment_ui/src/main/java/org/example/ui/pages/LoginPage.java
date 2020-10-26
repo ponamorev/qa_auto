@@ -13,6 +13,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginNameInput() {
+        waitForPageToBeLoaded();
         driver.findElement(logNameInput).click();
     }
 
@@ -25,6 +26,7 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginPasswordInput() {
+        waitForPageToBeLoaded();
         driver.findElement(logPassInput).click();
     }
 
