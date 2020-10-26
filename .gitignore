@@ -7,3 +7,5 @@ log/
 */allure-results
 */.allure
 .allure
+*/2020*/
+*/allure-report
