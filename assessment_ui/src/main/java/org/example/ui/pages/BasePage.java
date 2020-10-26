@@ -6,6 +6,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.Objects;
+
 @Slf4j
 abstract class BasePage {
     protected WebDriver driver;
@@ -21,16 +23,22 @@ abstract class BasePage {
     }
 
     protected WebElement getElement(By element, boolean isClickable) {
-        WebElement foundElement;
+        WebElement foundElement = null;
         try {
             foundElement = driver.findElement(element);
         } catch (NoSuchElementException e) {
-            log.warn("Can't find element {} by implicit wait.. Start explicit wait", element.toString());
+            log.warn("Can't find element [{}] by implicit wait.. Start explicit wait", element);
+        }
+        if (Objects.nonNull(foundElement)) {
+            return foundElement;
+        }
+        try {
             foundElement = isClickable
                     ? new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element))
                     : new WebDriverWait(driver, 10).until(ExpectedConditions.presenceOfElementLocated(element));
-            Assertions.assertNotNull(foundElement,
-                    String.format("Element %s wasn't found by implicit and explicit wait. Check the selector is correct", element.toString()));
+        } catch (TimeoutException e) {
+            log.error("Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
+            Assertions.fail(String.format("Element [%s] wasn't found by implicit and explicit wait. Check the selector is correct", element));
         }
         return foundElement;
     }
