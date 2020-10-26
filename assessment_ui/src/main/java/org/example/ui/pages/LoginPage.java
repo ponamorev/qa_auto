@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends BasePage {
     private final By logNameInput = By.id("passp-field-login");
-    private final By logPassInput = By.xpath("//*[@id=\"passp-field-passwd\"]");
+    private final By logPassInput = By.id("passp-field-passwd");
     private final By submitButton = By.cssSelector(".Button2_type_submit");
 
     public LoginPage(WebDriver driver) {
@@ -13,24 +13,22 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginNameInput() {
-        waitForPageToBeLoaded();
-        driver.findElement(logNameInput).click();
+        getElement(logNameInput, true).click();
     }
 
     public void loginNameInputSendKeys(String loginName) {
-        driver.findElement(logNameInput).sendKeys(loginName);
+        getElement(logNameInput, true).sendKeys(loginName);
     }
 
     public void clickSubmitButton() {
-        driver.findElement(submitButton).click();
+        getElement(submitButton, true).click();
     }
 
     public void clickLoginPasswordInput() {
-        waitForPageToBeLoaded();
-        driver.findElement(logPassInput).click();
+        getElement(logPassInput, true).click();
     }
 
     public void loginPasswordInputSendKeys(String loginPass) {
-        driver.findElement(logPassInput).sendKeys(loginPass);
+        getElement(logPassInput, true).sendKeys(loginPass);
     }
 }
