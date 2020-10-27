@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.Objects;
 
 @Slf4j
-abstract class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
 
     protected BasePage(WebDriver driver) {
@@ -19,7 +19,7 @@ abstract class BasePage {
         waitForPageToBeLoaded();
     }
 
-    protected void waitForPageToBeLoaded() {
+    public void waitForPageToBeLoaded() {
         WebDriverWait pageLoadWaiter = new WebDriverWait(driver, 5);
         pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
     }
@@ -36,6 +36,7 @@ abstract class BasePage {
 
     private WebElement getElement(By element, boolean isClickable) {
         WebElement foundElement = null;
+        saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         try {
             foundElement = driver.findElement(element);
         } catch (NoSuchElementException e) {

@@ -18,4 +18,8 @@ public class MailPageSteps extends BaseSteps {
         Assertions.assertTrue(page.getUserName().contains(expectedUserName),
                 "Имя пользователя не совпадает с ожидаемым");
     }
+
+    public void waitForPageToBeLoaded() {
+        page.waitForPageToBeLoaded();
+    }
 }

@@ -15,4 +15,8 @@ public class MainPageSteps extends BaseSteps {
     public void clickLoginButton() {
         page.clickLoginButton();
     }
+
+    public void waitForPageToBeLoaded() {
+        page.waitForPageToBeLoaded();
+    }
 }

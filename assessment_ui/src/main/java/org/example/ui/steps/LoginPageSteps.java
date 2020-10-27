@@ -24,4 +24,8 @@ public class LoginPageSteps extends BaseSteps {
         page.loginPasswordInputSendKeys(password);
         page.clickSubmitButton();
     }
+
+    public void waitForPageToBeLoaded() {
+        page.waitForPageToBeLoaded();
+    }
 }

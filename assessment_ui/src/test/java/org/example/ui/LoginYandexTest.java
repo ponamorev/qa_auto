@@ -22,10 +22,13 @@ public class LoginYandexTest extends BaseYandexTest {
 
     @Test
     public void logInTest() {
+        mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
         mainSteps.switchToNewTabAndClosePrevious(driver);
+        loginSteps.waitForPageToBeLoaded();
         loginSteps.setLoginAndSubmit(loginName);
         loginSteps.setPasswordAndSubmit(loginPass);
+        mailSteps.waitForPageToBeLoaded();
         mailSteps.clickAccountAndCheckUserNameIsContained(loginName);
     }
 }

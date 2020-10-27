@@ -3,6 +3,7 @@ package org.example.ui.steps;
 import com.google.common.collect.Lists;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.example.ui.pages.BasePage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
@@ -23,4 +24,7 @@ abstract class BaseSteps {
         String newTab = Lists.newArrayList(tabs).get(0);
         driver.switchTo().window(newTab);
     }
+
+    @Step(value = "Ожидание загрузки страницы")
+    public abstract void waitForPageToBeLoaded();
 }
