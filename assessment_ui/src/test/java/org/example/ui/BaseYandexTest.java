@@ -1,8 +1,12 @@
 package org.example.ui;
 
+import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import java.io.FileInputStream;
@@ -22,17 +26,39 @@ public abstract class BaseYandexTest {
 
     @BeforeAll
     protected static void setUp() {
-        initProperties();
-        driver = Driver.getWebDriver();
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        loginName = testsProperties.getProperty("yandex.login.name");
-        loginPass = testsProperties.getProperty("yandex.login.password");
+        try {
+            initProperties();
+            driver = Driver.getWebDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            loginName = testsProperties.getProperty("yandex.login.name");
+            loginPass = testsProperties.getProperty("yandex.login.password");
+        } catch (Exception e) {
+            takeScreenShotAndFail(driver, e);
+        }
     }
 
     @AfterAll
     protected static void tearDown() {
-        Driver.closeWebDriver();
+        try {
+            Driver.closeWebDriver();
+        } catch (Exception e) {
+            takeScreenShotAndFail(driver, e);
+        }
+    }
+
+    private static void takeScreenShotAndFail(WebDriver driver, Exception e) {
+        log.error("There was an error during initialization before all tests");
+        if (Objects.nonNull(driver)) {
+            saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+        }
+        log.error("Error: ", e);
+        Assertions.fail();
+    }
+
+    @Attachment(value = "Снимок экрана", type = "image/png")
+    private static byte[] saveScreenshot(byte[] screenShot) {
+        return screenShot;
     }
 
     private static void initProperties() {
