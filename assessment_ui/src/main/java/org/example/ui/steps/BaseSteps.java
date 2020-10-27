@@ -25,6 +25,5 @@ abstract class BaseSteps {
         driver.switchTo().window(newTab);
     }
 
-    @Step(value = "Ожидание загрузки страницы")
     public abstract void waitForPageToBeLoaded();
 }

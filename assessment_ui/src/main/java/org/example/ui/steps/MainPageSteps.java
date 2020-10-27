@@ -16,6 +16,7 @@ public class MainPageSteps extends BaseSteps {
         page.clickLoginButton();
     }
 
+    @Step(value = "Ожидание загрузки основной страницы")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }

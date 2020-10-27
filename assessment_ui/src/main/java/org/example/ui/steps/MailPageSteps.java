@@ -19,6 +19,7 @@ public class MailPageSteps extends BaseSteps {
                 "Имя пользователя не совпадает с ожидаемым");
     }
 
+    @Step(value = "Ожидание загрузки страницы с почтовым ящиком")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }

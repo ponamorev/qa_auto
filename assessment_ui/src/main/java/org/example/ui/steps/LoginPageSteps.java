@@ -25,6 +25,7 @@ public class LoginPageSteps extends BaseSteps {
         page.clickSubmitButton();
     }
 
+    @Step(value = "Ожидание загрузки страницы с авторизацией")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
