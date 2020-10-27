@@ -25,7 +25,8 @@ public class Driver {
         if (webDriver == null) {
             log.info("WebDriver is null, initiate new WebDriver");
             ChromeOptions options = new ChromeOptions();
-            options.setExperimentalOption("useAutomationExtension", false);
+            options.setHeadless(true);
+            options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
             webDriver = new ChromeDriver(options);
         }
         return webDriver;
