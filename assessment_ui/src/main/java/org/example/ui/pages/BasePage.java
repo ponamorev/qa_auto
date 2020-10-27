@@ -16,7 +16,6 @@ public abstract class BasePage {
 
     protected BasePage(WebDriver driver) {
         this.driver = driver;
-        waitForPageToBeLoaded();
     }
 
     public void waitForPageToBeLoaded() {
