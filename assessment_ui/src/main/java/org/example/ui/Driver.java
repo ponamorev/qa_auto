@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -23,7 +24,9 @@ public class Driver {
         initProperties();
         if (webDriver == null) {
             log.info("WebDriver is null, initiate new WebDriver");
-            webDriver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--no-sandbox");
+            webDriver = new ChromeDriver(options);
         }
         return webDriver;
     }
