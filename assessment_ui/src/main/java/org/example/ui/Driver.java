@@ -25,7 +25,7 @@ public class Driver {
         if (webDriver == null) {
             log.info("WebDriver is null, initiate new WebDriver");
             ChromeOptions options = new ChromeOptions();
-            options.addArguments("--no-sandbox");
+            options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
             webDriver = new ChromeDriver(options);
         }
         return webDriver;
