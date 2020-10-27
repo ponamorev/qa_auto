@@ -32,8 +32,12 @@ public class Driver {
     }
 
     public static void closeWebDriver() {
-        webDriver.quit();
-        webDriver = null;
+        log.info("Close driver and browser");
+        if (Objects.nonNull(webDriver)) {
+            log.info("Driver is not null - call quit() method..");
+            webDriver.quit();
+            webDriver = null;
+        }
     }
 
     private static void initProperties() {
