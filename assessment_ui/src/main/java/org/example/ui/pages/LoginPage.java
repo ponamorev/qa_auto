@@ -13,22 +13,22 @@ public class LoginPage extends BasePage {
     }
 
     public void clickLoginNameInput() {
-        getElement(logNameInput, true).click();
+        getClickableElement(logNameInput).click();
     }
 
     public void loginNameInputSendKeys(String loginName) {
-        getElement(logNameInput, true).sendKeys(loginName);
+        getClickableElement(logNameInput).sendKeys(loginName);
     }
 
     public void clickSubmitButton() {
-        getElement(submitButton, true).click();
+        getClickableElement(submitButton).click();
     }
 
     public void clickLoginPasswordInput() {
-        getElement(logPassInput, true).click();
+        getClickableElement(logPassInput).click();
     }
 
     public void loginPasswordInputSendKeys(String loginPass) {
-        getElement(logPassInput, true).sendKeys(loginPass);
+        getClickableElement(logPassInput).sendKeys(loginPass);
     }
 }

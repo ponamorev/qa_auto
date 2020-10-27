@@ -24,8 +24,17 @@ abstract class BasePage {
         pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
     }
 
+    @Step(value = "Получить clickable WebElement")
+    protected WebElement getClickableElement(By element) {
+        return getElement(element, true);
+    }
+
     @Step(value = "Получить WebElement")
-    protected WebElement getElement(By element, boolean isClickable) {
+    protected WebElement getElement(By element) {
+        return getElement(element, false);
+    }
+
+    private WebElement getElement(By element, boolean isClickable) {
         WebElement foundElement = null;
         try {
             foundElement = driver.findElement(element);

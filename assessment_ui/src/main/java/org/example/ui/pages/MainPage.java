@@ -11,6 +11,6 @@ public class MainPage extends BasePage {
     }
 
     public void clickLoginButton() {
-        driver.findElement(loginButton).click();
+        getClickableElement(loginButton).click();
     }
 }
