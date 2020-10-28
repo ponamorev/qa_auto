@@ -2,6 +2,7 @@ package org.example.ui.steps;
 
 import io.qameta.allure.Step;
 import org.example.ui.pages.LoginPage;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 public class LoginPageSteps extends BaseSteps {
@@ -23,6 +24,7 @@ public class LoginPageSteps extends BaseSteps {
         page.clickLoginPasswordInput();
         page.loginPasswordInputSendKeys(password);
         page.clickSubmitButton();
+        Assertions.assertTrue(page.isSubmitButtonStale(), "Кнопка подтверждения входа не исчезла, новая страница не загружена");
     }
 
     @Step(value = "Ожидание загрузки страницы с авторизацией")

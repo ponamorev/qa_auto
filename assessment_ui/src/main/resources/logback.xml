@@ -54,4 +54,10 @@
     <logger name="org.example.sandbox.TestDebugClass" level="DEBUG">
         <appender-ref ref="DEBUG"/>
     </logger>
+    <logger name="org.example.ui.steps" level="DEBUG">
+        <appender-ref ref="DEBUG"/>
+    </logger>
+    <logger name="org.example.ui.pages" level="DEBUG">
+        <appender-ref ref="DEBUG"/>
+    </logger>
 </configuration>

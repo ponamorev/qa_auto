@@ -1,10 +1,12 @@
 package org.example.ui.steps;
 
 import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
 import org.example.ui.pages.MailPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
+@Slf4j
 public class MailPageSteps extends BaseSteps {
     private final MailPage page;
 
@@ -15,7 +17,9 @@ public class MailPageSteps extends BaseSteps {
     @Step(value = "Нажать кнопку аккаунта и проверить, что там содержится имя пользователя")
     public void clickAccountAndCheckUserNameIsContained(String expectedUserName) {
         page.clickAccountButton();
-        Assertions.assertTrue(page.getUserName().contains(expectedUserName),
+        String actualUserName = page.getUserName();
+        log.debug("Actual user name - {}", actualUserName);
+        Assertions.assertTrue(actualUserName.contains(expectedUserName),
                 "Имя пользователя не совпадает с ожидаемым");
     }
 
