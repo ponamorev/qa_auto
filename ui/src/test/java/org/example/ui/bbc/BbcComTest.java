@@ -40,6 +40,6 @@ public class BbcComTest {
 
     @AfterEach
     void tearDown() {
-        driver.quit();
+        Driver.closeDriver();
     }
 }

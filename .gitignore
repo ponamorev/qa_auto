@@ -4,3 +4,8 @@ out/
 *.iml
 log/
 */*.iml
+*/allure-results
+*/.allure
+.allure
+*/2020*/
+*/allure-report

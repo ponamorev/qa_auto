@@ -52,6 +52,6 @@ public class YandexMoreTest {
 
     @AfterEach
     public void tearDown() {
-        driver.quit();
+        Driver.closeDriver();
     }
 }
