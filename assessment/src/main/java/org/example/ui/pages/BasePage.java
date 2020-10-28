@@ -18,8 +18,8 @@ public abstract class BasePage {
     }
 
     public void waitForPageToBeLoaded() {
-        WebDriverWait pageLoadWaiter = new WebDriverWait(driver, 5);
-        pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+        WebDriverWait pageLoadWaiter = new WebDriverWait(driver, 10);
+        pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("eager"));
     }
 
     protected WebElement getClickableElement(By element) {
@@ -32,7 +32,6 @@ public abstract class BasePage {
 
     private WebElement getElement(By element, boolean isClickable) {
         WebElement foundElement = null;
-        saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         try {
             foundElement = driver.findElement(element);
             log.debug("Found element [{}]", element);

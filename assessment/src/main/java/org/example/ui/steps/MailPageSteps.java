@@ -27,4 +27,10 @@ public class MailPageSteps extends BaseSteps {
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
+
+    @Step(value = "Нажать кнопку выхода из аккаунта")
+    public void clickLogOutButton() {
+        page.clickAccountButton();
+        page.clickLogoutButton();
+    }
 }

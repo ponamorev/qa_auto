@@ -1,5 +1,6 @@
 package org.example.ui.pages;
 
+import com.google.common.base.Strings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -37,5 +38,9 @@ public class LoginPage extends BasePage {
 
     public void loginPasswordInputSendKeys(String loginPass) {
         getClickableElement(logPassInput).sendKeys(loginPass);
+    }
+
+    public boolean isPasswordInputEmpty() {
+        return Strings.isNullOrEmpty(getClickableElement(logPassInput).getText());
     }
 }

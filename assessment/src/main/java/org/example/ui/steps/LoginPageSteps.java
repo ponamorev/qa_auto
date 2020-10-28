@@ -31,4 +31,9 @@ public class LoginPageSteps extends BaseSteps {
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
+
+    @Step(value = "Проверить, что поле ввода пароля пустое")
+    public void checkPasswordInputIsEmpty() {
+        Assertions.assertTrue(page.isPasswordInputEmpty(), "Поле ввода пароля не пустое");
+    }
 }

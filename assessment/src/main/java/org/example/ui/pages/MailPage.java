@@ -4,11 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Slf4j
 public class MailPage extends BasePage {
     private final By accountButton = By.cssSelector(".legouser_fetch-accounts_yes");
     private final By userName = By.cssSelector("div.legouser__menu-header .user-account__name");
+    private final By logoutButton = By.cssSelector(".legouser__menu-item_action_exit");
 
     public MailPage(WebDriver driver) {
         super(driver);
@@ -24,7 +27,16 @@ public class MailPage extends BasePage {
         }
     }
 
+//    public boolean isAccountButtonStale() {
+//        return new WebDriverWait(driver, 10)
+//                .until(ExpectedConditions.stalenessOf(driver.findElement(accountButton)));
+//    }
+
     public String getUserName() {
         return getElement(userName).getText();
+    }
+
+    public void clickLogoutButton() {
+        getClickableElement(logoutButton).click();
     }
 }

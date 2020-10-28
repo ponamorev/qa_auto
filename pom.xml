@@ -11,7 +11,7 @@
     <modules>
         <module>sandbox</module>
         <module>ui</module>
-        <module>assessment_ui</module>
+        <module>assessment</module>
     </modules>
 
     <properties>

@@ -4,6 +4,7 @@ import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.example.ui.drivers.Driver;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.OutputType;
@@ -27,16 +28,7 @@ public abstract class BaseYandexTest {
 
     @BeforeAll
     protected static void setUp() {
-        try {
-            initProperties();
-            driver = Driver.getWebDriver();
-            driver.manage().window().maximize();
-            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-            loginName = testsProperties.getProperty("yandex.login.name");
-            loginPass = testsProperties.getProperty("yandex.login.password");
-        } catch (Exception e) {
-            takeScreenShotAndFail(driver, e);
-        }
+        initProperties();
     }
 
     @AfterAll
@@ -48,8 +40,20 @@ public abstract class BaseYandexTest {
         }
     }
 
-    private static void takeScreenShotAndFail(WebDriver driver, Exception e) {
-        log.error("There was an error during initialization before all tests");
+    protected static void initWebDriver() {
+        try {
+            driver = Driver.getWebDriver();
+            driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+            loginName = testsProperties.getProperty("yandex.login.name");
+            loginPass = testsProperties.getProperty("yandex.login.password");
+        } catch (Exception e) {
+            takeScreenShotAndFail(driver, e);
+        }
+    }
+
+    protected static void takeScreenShotAndFail(WebDriver driver, Exception e) {
+        log.error("There was an error during initialization before or after tests");
         if (Objects.nonNull(driver)) {
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         }
