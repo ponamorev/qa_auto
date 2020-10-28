@@ -19,7 +19,13 @@ public abstract class BasePage {
 
     public void waitForPageToBeLoaded() {
         WebDriverWait pageLoadWaiter = new WebDriverWait(driver, 10);
-        pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("eager"));
+        try {
+            pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("eager"));
+        } catch (TimeoutException e) {
+            log.debug("Can't load page for 10 seconds.. Try again");
+            saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
+            pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("eager"));
+        }
     }
 
     protected WebElement getClickableElement(By element) {
