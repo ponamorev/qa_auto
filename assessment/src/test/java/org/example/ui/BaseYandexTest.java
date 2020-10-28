@@ -2,6 +2,7 @@ package org.example.ui;
 
 import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
+import org.example.ui.drivers.Driver;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

@@ -1,14 +1,9 @@
-package org.example.ui;
+package org.example.ui.drivers;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.CapabilityType;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -67,32 +62,12 @@ public class Driver {
         String browserName = webDriverProperties.getProperty("browser.name");
         switch (browserName) {
             case FIREFOX:
-                return getFirefoxDriver();
+                return FirefoxWebDriver.getDriver(webDriverProperties);
             case CHROME:
-                return getChromeDriver();
+                return ChromeWebDriver.getDriver(webDriverProperties);
             default:
                 log.warn("Browser wasn't specified, start test with Chrome..");
-                return getChromeDriver();
+                return ChromeWebDriver.getDriver(webDriverProperties);
         }
-    }
-
-    private static ChromeDriver getChromeDriver() {
-        ChromeOptions options = new ChromeOptions();
-        if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
-            options.setHeadless(true);
-            options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        }
-        options.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-        return new ChromeDriver(options);
-    }
-
-    private static FirefoxDriver getFirefoxDriver() {
-        FirefoxOptions options = new FirefoxOptions();
-        if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
-            options.setHeadless(true);
-            options.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-        }
-        options.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-        return new FirefoxDriver(options);
     }
 }
