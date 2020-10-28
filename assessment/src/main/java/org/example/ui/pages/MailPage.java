@@ -4,8 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 @Slf4j
 public class MailPage extends BasePage {
@@ -26,11 +24,6 @@ public class MailPage extends BasePage {
             getClickableElement(accountButton).click();
         }
     }
-
-//    public boolean isAccountButtonStale() {
-//        return new WebDriverWait(driver, 10)
-//                .until(ExpectedConditions.stalenessOf(driver.findElement(accountButton)));
-//    }
 
     public String getUserName() {
         return getElement(userName).getText();
