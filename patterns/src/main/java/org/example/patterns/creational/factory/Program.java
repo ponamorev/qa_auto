@@ -1,8 +1,10 @@
 package org.example.patterns.creational.factory;
 
-import org.example.patterns.creational.factory.developer.*;
-import org.example.patterns.creational.factory.developer.CppDeveloper;
-import org.example.patterns.creational.factory.developer.JavaDeveloper;
+import org.example.patterns.creational.factory.developer.CppDeveloperFactory;
+import org.example.patterns.creational.factory.developer.Developer;
+import org.example.patterns.creational.factory.developer.DeveloperFactory;
+import org.example.patterns.creational.factory.developer.JavaDeveloperFactory;
+import org.example.patterns.creational.factory.developer.PhpDeveloperFactory;
 
 public class Program {
     public static void main(String[] args) {
