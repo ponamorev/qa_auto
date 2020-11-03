@@ -11,13 +11,13 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
+import static org.example.ui.drivers.Browser.OPERA;
+import static org.example.ui.drivers.Browser.CHROME;
+import static org.example.ui.drivers.Browser.FIREFOX;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
 public class Driver {
-    private static final String WEBDRIVER_CHROME_DRIVER = "webdriver.chrome.driver";
-    private static final String WEBDRIVER_GECKO_DRIVER = "webdriver.gecko.driver";
-    private static final String CHROME = "chrome";
-    private static final String FIREFOX = "firefox";
     private static Properties webDriverProperties;
     private static WebDriver webDriver;
 
@@ -44,10 +44,12 @@ public class Driver {
             webDriverProperties = new Properties();
             try (FileInputStream inputStream = new FileInputStream("src/main/resources/driver.properties")) {
                 webDriverProperties.load(inputStream);
-                String pathToChromeDriver = webDriverProperties.getProperty(WEBDRIVER_CHROME_DRIVER);
-                String pathToFirefoxDriver = webDriverProperties.getProperty(WEBDRIVER_GECKO_DRIVER);
-                System.setProperty(WEBDRIVER_CHROME_DRIVER, pathToChromeDriver);
-                System.setProperty(WEBDRIVER_GECKO_DRIVER, pathToFirefoxDriver);
+                String pathToChromeDriver = webDriverProperties.getProperty(CHROME.getWebDriverPropName());
+                String pathToFirefoxDriver = webDriverProperties.getProperty(FIREFOX.getWebDriverPropName());
+                String pathToOperaDriver = webDriverProperties.getProperty(OPERA.getWebDriverPropName());
+                System.setProperty(CHROME.getWebDriverPropName(), pathToChromeDriver);
+                System.setProperty(FIREFOX.getWebDriverPropName(), pathToFirefoxDriver);
+                System.setProperty(OPERA.getWebDriverPropName(), pathToOperaDriver);
                 log.trace("Properties with information about WebDriver was uploaded to program");
             } catch (FileNotFoundException fnfEx) {
                 log.error("File with properties wasn't found by path src/main/resources/driver.properties", fnfEx);
@@ -60,11 +62,14 @@ public class Driver {
 
     private static WebDriver getDriver() {
         String browserName = webDriverProperties.getProperty("browser.name");
-        switch (browserName) {
+        Browser browser = Browser.valueOf(browserName);
+        switch (browser) {
             case FIREFOX:
                 return FirefoxWebDriver.getDriver(webDriverProperties);
             case CHROME:
                 return ChromeWebDriver.getDriver(webDriverProperties);
+            case OPERA:
+                return OperaWebDriver.getDriver(webDriverProperties);
             default:
                 log.warn("Browser wasn't specified, start test with Chrome..");
                 return ChromeWebDriver.getDriver(webDriverProperties);
