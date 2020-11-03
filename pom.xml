@@ -12,6 +12,7 @@
         <module>sandbox</module>
         <module>ui</module>
         <module>assessment</module>
+        <module>patterns</module>
     </modules>
 
     <properties>
