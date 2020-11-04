@@ -10,6 +10,7 @@ public class LoginPage extends BasePage {
     private final By logNameInput = By.id("passp-field-login");
     private final By logPassInput = By.id("passp-field-passwd");
     private final By submitButton = By.cssSelector(".Button2_type_submit");
+    private final By errorMessageText = By.cssSelector(".Textinput-Hint_state_error");
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -42,5 +43,9 @@ public class LoginPage extends BasePage {
 
     public boolean isPasswordInputEmpty() {
         return Strings.isNullOrEmpty(getClickableElement(logPassInput).getText());
+    }
+
+    public String getErrorMessageText() {
+        return getElement(errorMessageText).getText();
     }
 }

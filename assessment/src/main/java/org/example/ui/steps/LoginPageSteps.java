@@ -24,6 +24,10 @@ public class LoginPageSteps extends BaseSteps {
         page.clickLoginPasswordInput();
         page.loginPasswordInputSendKeys(password);
         page.clickSubmitButton();
+    }
+
+    @Step(value = "Ожидание загрузки новой страницы после введения пароля")
+    public void waitForNewPageLoadingAfterPasswordSubmitting() {
         Assertions.assertTrue(page.isSubmitButtonStale(), "Кнопка подтверждения входа не исчезла, новая страница не загружена");
     }
 
@@ -35,5 +39,17 @@ public class LoginPageSteps extends BaseSteps {
     @Step(value = "Проверить, что поле ввода пароля пустое")
     public void checkPasswordInputIsEmpty() {
         Assertions.assertTrue(page.isPasswordInputEmpty(), "Поле ввода пароля не пустое");
+    }
+
+    @Step(value = "Проверить наличие сообщения о неверном пароле")
+    public void checkWrongPasswordErrorExists() {
+        Assertions.assertEquals("Неверный пароль", page.getErrorMessageText(),
+                "Сообщение о неверном пароле отсутствует");
+    }
+
+    @Step(value = "Проверить наличие сообщения о несуществующем аккаунте")
+    public void checkWrongLoginNameErrorExists() {
+        Assertions.assertEquals("Такого аккаунта нет", page.getErrorMessageText(),
+                "Сообщение об отсутствующем аккаунте отсутствует");
     }
 }

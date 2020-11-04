@@ -47,17 +47,12 @@
 
     <root level="info">
         <appender-ref ref="INFO"/>
+        <appender-ref ref="DEBUG"/>
         <appender-ref ref="ERROR"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="WARN"/>
     </root>
     <logger name="org.example.sandbox.TestDebugClass" level="DEBUG">
-        <appender-ref ref="DEBUG"/>
-    </logger>
-    <logger name="org.example.ui.steps" level="DEBUG">
-        <appender-ref ref="DEBUG"/>
-    </logger>
-    <logger name="org.example.ui.pages" level="DEBUG">
         <appender-ref ref="DEBUG"/>
     </logger>
 </configuration>

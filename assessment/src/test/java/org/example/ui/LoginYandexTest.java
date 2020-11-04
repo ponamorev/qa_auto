@@ -31,6 +31,7 @@ public class LoginYandexTest extends BaseYandexTest {
         loginSteps.waitForPageToBeLoaded();
         loginSteps.setLoginAndSubmit(loginName);
         loginSteps.setPasswordAndSubmit(loginPass);
+        loginSteps.waitForNewPageLoadingAfterPasswordSubmitting();
         mailSteps.waitForPageToBeLoaded();
         mailSteps.clickAccountAndCheckUserNameIsContained(loginName);
     }
@@ -43,10 +44,32 @@ public class LoginYandexTest extends BaseYandexTest {
         loginSteps.waitForPageToBeLoaded();
         loginSteps.setLoginAndSubmit(loginName);
         loginSteps.setPasswordAndSubmit(loginPass);
+        loginSteps.waitForNewPageLoadingAfterPasswordSubmitting();
         mailSteps.waitForPageToBeLoaded();
         mailSteps.clickLogOutButton();
         loginSteps.waitForPageToBeLoaded();
         loginSteps.checkPasswordInputIsEmpty();
+    }
+
+    @Test
+    public void invalidPasswordTest() {
+        mainSteps.waitForPageToBeLoaded();
+        mainSteps.clickLoginButton();
+        mainSteps.switchToNewTabAndClosePrevious(driver);
+        loginSteps.waitForPageToBeLoaded();
+        loginSteps.setLoginAndSubmit(loginName);
+        loginSteps.setPasswordAndSubmit("No" + loginPass);
+        loginSteps.checkWrongPasswordErrorExists();
+    }
+
+    @Test
+    public void invalidLoginTest() {
+        mainSteps.waitForPageToBeLoaded();
+        mainSteps.clickLoginButton();
+        mainSteps.switchToNewTabAndClosePrevious(driver);
+        loginSteps.waitForPageToBeLoaded();
+        loginSteps.setLoginAndSubmit("No" + loginName);
+        loginSteps.checkWrongLoginNameErrorExists();
     }
 
     @AfterEach

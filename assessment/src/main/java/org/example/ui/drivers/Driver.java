@@ -31,7 +31,6 @@ public class Driver {
     }
 
     public static void closeWebDriver() {
-        log.info("Close driver and browser");
         if (Objects.nonNull(webDriver)) {
             log.info("Driver is not null - call quit() method..");
             webDriver.quit();
