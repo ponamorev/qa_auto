@@ -61,7 +61,7 @@ public class Driver {
     }
 
     private static WebDriver getDriver() {
-        String browserName = webDriverProperties.getProperty("browser.name");
+        String browserName = webDriverProperties.getProperty("browser.name").toUpperCase();
         Browser browser = Browser.valueOf(browserName);
         switch (browser) {
             case FIREFOX:
