@@ -28,6 +28,10 @@ public abstract class BasePage {
         }
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
+
     protected WebElement getClickableElement(By element) {
         return getElement(element, true);
     }

@@ -31,6 +31,7 @@ public class LoginPageSteps extends BaseSteps {
         Assertions.assertTrue(page.isSubmitButtonStale(), "Кнопка подтверждения входа не исчезла, новая страница не загружена");
     }
 
+    @Override
     @Step(value = "Ожидание загрузки страницы с авторизацией")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();

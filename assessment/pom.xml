@@ -11,6 +11,10 @@
 
     <artifactId>assessment</artifactId>
 
+    <properties>
+        <awaitility.version>4.0.3</awaitility.version>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -25,5 +29,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.awaitility</groupId>
+            <artifactId>awaitility</artifactId>
+            <version>${awaitility.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

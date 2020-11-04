@@ -1,11 +1,10 @@
 package org.example.ui;
 
-import org.example.ui.drivers.Driver;
 import org.example.ui.steps.LoginPageSteps;
 import org.example.ui.steps.MailPageSteps;
 import org.example.ui.steps.MainPageSteps;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class LoginYandexTest extends BaseYandexTest {
@@ -24,6 +23,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
+    @DisplayName(value = "Проверка авторизации Яндекс.Почта")
     public void logInTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -37,6 +37,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
+    @DisplayName(value = "Проверка выхода из аккаунта Яндекс.Почта")
     public void logOutTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -52,6 +53,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
+    @DisplayName(value = "Проверка отсутствия авторизации при использовании неправильного пароля")
     public void invalidPasswordTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -63,6 +65,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
+    @DisplayName(value = "Проверка отсутствия авторизации по несуществующему аккаунту")
     public void invalidLoginTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -70,14 +73,5 @@ public class LoginYandexTest extends BaseYandexTest {
         loginSteps.waitForPageToBeLoaded();
         loginSteps.setLoginAndSubmit("No" + loginName);
         loginSteps.checkWrongLoginNameErrorExists();
-    }
-
-    @AfterEach
-    public void loginTearDown() {
-        try {
-            Driver.closeWebDriver();
-        } catch (Exception e) {
-            takeScreenShotAndFail(driver, e);
-        }
     }
 }

@@ -46,6 +46,8 @@ public class LoginPage extends BasePage {
     }
 
     public String getErrorMessageText() {
+        new WebDriverWait(driver, 10)
+                .until(driver -> !Strings.isNullOrEmpty(driver.findElement(errorMessageText).getText()));
         return getElement(errorMessageText).getText();
     }
 }
