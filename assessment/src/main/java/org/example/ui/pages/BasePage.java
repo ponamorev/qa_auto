@@ -40,7 +40,7 @@ public abstract class BasePage {
         return getElement(element, false);
     }
 
-    protected void clickStaleElement(By element) {
+    protected void clickProbablyStaleElement(By element) {
         try {
             getClickableElement(element).click();
         } catch (StaleElementReferenceException e) {
@@ -75,7 +75,7 @@ public abstract class BasePage {
     }
 
     @Attachment(value = "Снимок экрана", type = "image/png")
-    private byte[] saveScreenshot(byte[] screenShot) {
+    protected byte[] saveScreenshot(byte[] screenShot) {
         return screenShot;
     }
 }

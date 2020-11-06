@@ -16,7 +16,7 @@ public class MailPage extends BasePage {
     }
 
     public void clickAccountButton() {
-        clickStaleElement(accountButton);
+        clickProbablyStaleElement(accountButton);
     }
 
     public String getUserName() {
@@ -28,6 +28,6 @@ public class MailPage extends BasePage {
     }
 
     public void clickHomePageButton() {
-        clickStaleElement(homePageButton);
+        clickProbablyStaleElement(homePageButton);
     }
 }

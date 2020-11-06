@@ -5,7 +5,7 @@ import org.example.ui.steps.BaseSteps;
 import org.example.ui.steps.ImagesPageSteps;
 import org.example.ui.steps.MainPageSteps;
 import org.example.ui.steps.MapsPageSteps;
-import org.example.ui.steps.MarketPageSteps;
+import org.example.ui.steps.market.MarketPageSteps;
 import org.example.ui.steps.MusicPageSteps;
 import org.example.ui.steps.NewsPageSteps;
 import org.example.ui.steps.TranslatePageSteps;
