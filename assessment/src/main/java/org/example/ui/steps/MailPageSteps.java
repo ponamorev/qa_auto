@@ -34,4 +34,9 @@ public class MailPageSteps extends BaseSteps {
         page.clickAccountButton();
         page.clickLogoutButton();
     }
+
+    @Step(value = "Нажать кнопку перехода на главную страницу Яндекс")
+    public void clickYandexHomeButton() {
+        page.clickHomePageButton();
+    }
 }

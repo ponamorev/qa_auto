@@ -26,6 +26,12 @@ public class LoginPageSteps extends BaseSteps {
         page.clickSubmitButton();
     }
 
+    @Step(value = "Авторизоваться в системе")
+    public void logInToAccount(String login, String password) {
+        setLoginAndSubmit(login);
+        setPasswordAndSubmit(password);
+    }
+
     @Step(value = "Ожидание загрузки новой страницы после введения пароля")
     public void waitForNewPageLoadingAfterPasswordSubmitting() {
         Assertions.assertTrue(page.isSubmitButtonStale(), "Кнопка подтверждения входа не исчезла, новая страница не загружена");

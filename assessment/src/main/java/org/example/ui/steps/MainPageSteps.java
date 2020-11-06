@@ -17,6 +17,12 @@ public class MainPageSteps extends BaseSteps {
         page.clickLoginButton();
     }
 
+    @Step(value = "Перейти на страницу авторизации")
+    public void goToLoginPage(WebDriver driver) {
+        clickLoginButton();
+        switchToNewTabAndClosePrevious(driver);
+    }
+
     @Override
     @Step(value = "Ожидание загрузки основной страницы")
     public void waitForPageToBeLoaded() {
@@ -50,5 +56,11 @@ public class MainPageSteps extends BaseSteps {
             default:
                 Assertions.fail(String.format("Раздел %s отсутствует на главной странице Яндекс", section));
         }
+    }
+
+    @Step(value = "Перейти на страницу настроек аккаунта")
+    public void goToSettingsPage() {
+        page.clickAccountMenuButton();
+        page.clickAccountSettingsButton();
     }
 }

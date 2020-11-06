@@ -40,6 +40,16 @@ public abstract class BasePage {
         return getElement(element, false);
     }
 
+    protected void clickStaleElement(By element) {
+        try {
+            getClickableElement(element).click();
+        } catch (StaleElementReferenceException e) {
+            log.warn("Element {} is absent in DOM, try to find it again..", element);
+            waitForPageToBeLoaded();
+            getClickableElement(element).click();
+        }
+    }
+
     private WebElement getElement(By element, boolean isClickable) {
         WebElement foundElement = null;
         try {
