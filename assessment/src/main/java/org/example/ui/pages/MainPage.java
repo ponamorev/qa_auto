@@ -1,8 +1,12 @@
 package org.example.ui.pages;
 
+import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 
+@Slf4j
 public class MainPage extends BasePage {
     private final By loginButton = By.cssSelector(".button.desk-notif-card__login-enter-expanded");
     private final By videoButton = By.xpath("//*[@data-id='video']");
@@ -12,8 +16,8 @@ public class MainPage extends BasePage {
     private final By marketButton = By.xpath("//*[@data-id='market']");
     private final By translateButton = By.xpath("//*[@data-id='translate']");
     private final By musicButton = By.xpath("//*[@data-id='music']");
-    private final By accountMenuButton = By.xpath("//a[@data-statlog='notifications.mail.login.usermenu.toggle-icon']");
-    private final By accountSettingsButton = By.xpath("//a[@data-statlog='mail.login.usermenu.settings']");
+    private final By settingsDropDownMenuButton = By.xpath("//a[@role='button']/parent::div[contains(@class, 'dropdown2')]");
+    private final By portalSettingsButton = By.xpath("//a[@data-statlog='head.settings.other']");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -51,11 +55,18 @@ public class MainPage extends BasePage {
         getClickableElement(musicButton).click();
     }
 
-    public void clickAccountMenuButton() {
-        getClickableElement(accountMenuButton).click();
+    public void clickSettingsDropDownMenuButton() {
+        try {
+            getClickableElement(settingsDropDownMenuButton).click();
+        } catch (ElementNotInteractableException e) {
+            log.warn("Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(getClickableElement(settingsDropDownMenuButton)).perform();
+            getClickableElement(settingsDropDownMenuButton).click();
+        }
     }
 
-    public void clickAccountSettingsButton() {
-        getClickableElement(accountSettingsButton).click();
+    public void clickPortalSettingsButton() {
+        getClickableElement(portalSettingsButton).click();
     }
 }

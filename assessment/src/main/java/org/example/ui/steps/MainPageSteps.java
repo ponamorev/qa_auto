@@ -17,12 +17,6 @@ public class MainPageSteps extends BaseSteps {
         page.clickLoginButton();
     }
 
-    @Step(value = "Перейти на страницу авторизации")
-    public void goToLoginPage(WebDriver driver) {
-        clickLoginButton();
-        switchToNewTabAndClosePrevious(driver);
-    }
-
     @Override
     @Step(value = "Ожидание загрузки основной страницы")
     public void waitForPageToBeLoaded() {
@@ -58,9 +52,9 @@ public class MainPageSteps extends BaseSteps {
         }
     }
 
-    @Step(value = "Перейти на страницу настроек аккаунта")
+    @Step(value = "Перейти на страницу настроек")
     public void goToSettingsPage() {
-        page.clickAccountMenuButton();
-        page.clickAccountSettingsButton();
+        page.clickSettingsDropDownMenuButton();
+        page.clickPortalSettingsButton();
     }
 }

@@ -27,4 +27,11 @@ public class SearchSettingsPageSteps extends SettingsBaseSteps {
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы не на английском языке");
     }
+
+    @Step(value = "Проверить, что язык был изменен на русский")
+    public void checkLanguageChangedToRussian() {
+        String expectedPageTitle = "Поиск — Настройка Яндекса";
+        Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
+                "Заголовок страницы не на русском языке");
+    }
 }

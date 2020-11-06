@@ -1,5 +1,6 @@
 package org.example.ui.pages.yandex;
 
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -24,8 +25,14 @@ public class GeoPositionPage extends BasePage {
     }
 
     public YandexMainPage chooseCityFromPopup() {
-        cityInput.click();
-        popupFirstCity.click();
+        try {
+            cityInput.click();
+            popupFirstCity.click();
+        } catch (StaleElementReferenceException e) {
+            init(this);
+            cityInput.click();
+            popupFirstCity.click();
+        }
         return new YandexMainPage(driver);
     }
 }
