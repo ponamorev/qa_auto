@@ -14,13 +14,13 @@ public class NewsPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Новости")
+    @Step("Ожидание загрузки страницы Яндекс.Новости")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Новости была загружена")
+    @Step("Проверить, что страница с Яндекс.Новости была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Яндекс.Новости: Главные новости сегодня, самые свежие и последние новости России онлайн";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),

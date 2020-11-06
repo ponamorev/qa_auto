@@ -14,13 +14,13 @@ public class ImagesPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Картинки")
+    @Step("Ожидание загрузки страницы Яндекс.Картинки")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Картинки была загружена")
+    @Step("Проверить, что страница с Яндекс.Картинки была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Яндекс.Картинки: поиск изображений в интернете, поиск по картинке";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),

@@ -14,13 +14,13 @@ public class MusicPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Музыка")
+    @Step("Ожидание загрузки страницы Яндекс.Музыка")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Музыка была загружена")
+    @Step("Проверить, что страница с Яндекс.Музыка была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Яндекс.Музыка — собираем музыку и подкасты для вас";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),

@@ -41,7 +41,7 @@ public class YandexMainTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName(value = "Проверка перехода на основные сервисы Яндекс")
+    @DisplayName("Проверка перехода на основные сервисы Яндекс")
     public void mainPageNavigationSteps() {
         checkNavigationToPage(videoSteps, "Видео");
         checkNavigationToPage(imagesSteps, "Картинки");

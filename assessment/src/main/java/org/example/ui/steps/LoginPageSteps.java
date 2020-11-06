@@ -12,49 +12,49 @@ public class LoginPageSteps extends BaseSteps {
         page = new LoginPage(driver);
     }
 
-    @Step(value = "Ввести логин и нажать кнопку 'Войти'")
+    @Step("Ввести логин и нажать кнопку 'Войти'")
     public void setLoginAndSubmit(String login) {
         page.clickLoginNameInput();
         page.loginNameInputSendKeys(login);
         page.clickSubmitButton();
     }
 
-    @Step(value = "Ввести пароль и нажать кнопку 'Войти'")
+    @Step("Ввести пароль и нажать кнопку 'Войти'")
     public void setPasswordAndSubmit(String password) {
         page.clickLoginPasswordInput();
         page.loginPasswordInputSendKeys(password);
         page.clickSubmitButton();
     }
 
-    @Step(value = "Авторизоваться в системе")
+    @Step("Авторизоваться в системе")
     public void logInToAccount(String login, String password) {
         setLoginAndSubmit(login);
         setPasswordAndSubmit(password);
     }
 
-    @Step(value = "Ожидание загрузки новой страницы после введения пароля")
+    @Step("Ожидание загрузки новой страницы после введения пароля")
     public void waitForNewPageLoadingAfterPasswordSubmitting() {
         Assertions.assertTrue(page.isSubmitButtonStale(), "Кнопка подтверждения входа не исчезла, новая страница не загружена");
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы с авторизацией")
+    @Step("Ожидание загрузки страницы с авторизацией")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
-    @Step(value = "Проверить, что поле ввода пароля пустое")
+    @Step("Проверить, что поле ввода пароля пустое")
     public void checkPasswordInputIsEmpty() {
         Assertions.assertTrue(page.isPasswordInputEmpty(), "Поле ввода пароля не пустое");
     }
 
-    @Step(value = "Проверить наличие сообщения о неверном пароле")
+    @Step("Проверить наличие сообщения о неверном пароле")
     public void checkWrongPasswordErrorExists() {
         Assertions.assertEquals("Неверный пароль", page.getErrorMessageText(),
                 "Сообщение о неверном пароле отсутствует");
     }
 
-    @Step(value = "Проверить наличие сообщения о несуществующем аккаунте")
+    @Step("Проверить наличие сообщения о несуществующем аккаунте")
     public void checkWrongLoginNameErrorExists() {
         Assertions.assertEquals("Такого аккаунта нет", page.getErrorMessageText(),
                 "Сообщение об отсутствующем аккаунте отсутствует");

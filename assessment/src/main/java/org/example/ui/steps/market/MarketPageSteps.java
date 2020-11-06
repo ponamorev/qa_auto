@@ -14,20 +14,20 @@ public class MarketPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Маркет")
+    @Step("Ожидание загрузки страницы Яндекс.Маркет")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Маркет была загружена")
+    @Step("Проверить, что страница с Яндекс.Маркет была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Яндекс.Маркет — выбор и покупка товаров из проверенных интернет-магазинов";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Маркет не совпадает с ожидаемым");
     }
 
-    @Step(value = "Ввести в строку поиска название '{product}' и нажать кнопку 'Найти'")
+    @Step("Ввести в строку поиска название '{product}' и нажать кнопку 'Найти'")
     public void setProductNameAndSearch(String product) {
         page.clearSearchInput();
         page.clickSearchInput();
@@ -35,23 +35,28 @@ public class MarketPageSteps extends BaseSteps {
         page.clickSubmitSearchButton();
     }
 
-    @Step(value = "Получить название первого товара")
+    @Step("Получить название первого товара")
     public String getFirstProductName() {
         return page.getProductName(1);
     }
 
-    @Step(value = "Получить название второго товара")
+    @Step("Получить название второго товара")
     public String getSecondProductName() {
         return page.getProductName(2);
     }
 
-    @Step(value = "Добавить {count}-й товар в сравнение")
+    @Step("Добавить {count}-й товар в сравнение")
     public void addProductToComparison(int count) {
         page.clickAddProductToComparisonButton(count);
     }
 
-    @Step(value = "Нажать кнопку 'Сравнить'")
+    @Step("Нажать кнопку 'Сравнить'")
     public void clickCompareButton() {
         page.clickCompareButton();
+    }
+
+    @Step("Нажать кнопку вкладки 'Электроника'")
+    public void clickElectronicsTabButton() {
+        page.clickElectronicsTabButton();
     }
 }

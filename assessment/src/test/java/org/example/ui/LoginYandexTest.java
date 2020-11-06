@@ -23,7 +23,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName(value = "Проверка авторизации Яндекс.Почта")
+    @DisplayName("Проверка авторизации Яндекс.Почта")
     public void logInTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -37,7 +37,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName(value = "Проверка выхода из аккаунта Яндекс.Почта")
+    @DisplayName("Проверка выхода из аккаунта Яндекс.Почта")
     public void logOutTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -53,7 +53,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName(value = "Проверка отсутствия авторизации при использовании неправильного пароля")
+    @DisplayName("Проверка отсутствия авторизации при использовании неправильного пароля")
     public void invalidPasswordTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();
@@ -65,7 +65,7 @@ public class LoginYandexTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName(value = "Проверка отсутствия авторизации по несуществующему аккаунту")
+    @DisplayName("Проверка отсутствия авторизации по несуществующему аккаунту")
     public void invalidLoginTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();

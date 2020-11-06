@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public abstract class BaseSteps {
-    @Step(value = "Переключиться на вторую вкладку")
+    @Step("Переключиться на вторую вкладку")
     public void switchToNewTabAndClosePrevious(WebDriver driver) {
         String currentTab = driver.getWindowHandle();
         Set<String> tabs = driver.getWindowHandles();

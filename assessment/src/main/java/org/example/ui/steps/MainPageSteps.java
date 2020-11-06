@@ -12,18 +12,18 @@ public class MainPageSteps extends BaseSteps {
         page = new MainPage(driver);
     }
 
-    @Step(value = "Нажать кнопку входа в аккаунт")
+    @Step("Нажать кнопку входа в аккаунт")
     public void clickLoginButton() {
         page.clickLoginButton();
     }
 
     @Override
-    @Step(value = "Ожидание загрузки основной страницы")
+    @Step("Ожидание загрузки основной страницы")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
-    @Step(value = "Нажать кнопку '{section}'")
+    @Step("Нажать кнопку '{section}'")
     public void clickNavigationButton(String section) {
         switch(section) {
             case "Видео":
@@ -52,7 +52,7 @@ public class MainPageSteps extends BaseSteps {
         }
     }
 
-    @Step(value = "Перейти на страницу настроек")
+    @Step("Перейти на страницу настроек")
     public void goToSettingsPage() {
         page.clickSettingsDropDownMenuButton();
         page.clickPortalSettingsButton();

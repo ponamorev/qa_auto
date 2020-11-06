@@ -24,7 +24,7 @@ public class LanguageYandexTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName(value = "Проверка переключения языка отображения")
+    @DisplayName("Проверка переключения языка отображения")
     public void changeLanguageTest() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.goToSettingsPage();

@@ -13,6 +13,7 @@ public class MarketPage extends BasePage {
     private final By searchInput = By.id("header-search");
     private final By submitButton = By.xpath("//button[@type='submit']");
     private final By compareButton = By.className("_3oDLePObQ1");
+    private final By electronicsTabButton = By.xpath("//span[contains(text(),'Электроника')]/parent::a");
     private final String nProductItem = "//div[contains(@class,'_2Qo3ODl0by')]/child::article[%d]";
 
     public MarketPage(WebDriver driver) {
@@ -54,5 +55,9 @@ public class MarketPage extends BasePage {
                     .until(ExpectedConditions.elementToBeClickable(compareButton))
                     .click();
         }
+    }
+
+    public void clickElectronicsTabButton() {
+        getClickableElement(electronicsTabButton).click();
     }
 }

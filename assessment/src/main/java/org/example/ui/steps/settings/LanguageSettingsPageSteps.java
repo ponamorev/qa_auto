@@ -12,19 +12,19 @@ public class LanguageSettingsPageSteps extends SettingsBaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы с языковыми настройками Яндекс")
+    @Step("Ожидание загрузки страницы с языковыми настройками Яндекс")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
-    @Step(value = "Выбрать английский язык в списке языков")
+    @Step("Выбрать английский язык в списке языков")
     public void chooseEnglishLanguage() {
         page.clickSelectLanguageButton();
         page.chooseEnglishLanguage();
         page.clickSubmitButton();
     }
 
-    @Step(value = "Выбрать русский язык в списке языков")
+    @Step("Выбрать русский язык в списке языков")
     public void chooseRussianLanguage() {
         page.clickSelectLanguageButton();
         page.chooseRussianLanguage();

@@ -21,14 +21,14 @@ public class SearchSettingsPageSteps extends SettingsBaseSteps {
         clickTabButton(tabName, page);
     }
 
-    @Step(value = "Проверить, что язык был изменен на английский")
+    @Step("Проверить, что язык был изменен на английский")
     public void checkLanguageChangedToEnglish() {
         String expectedPageTitle = "Search — Yandex settings";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы не на английском языке");
     }
 
-    @Step(value = "Проверить, что язык был изменен на русский")
+    @Step("Проверить, что язык был изменен на русский")
     public void checkLanguageChangedToRussian() {
         String expectedPageTitle = "Поиск — Настройка Яндекса";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),

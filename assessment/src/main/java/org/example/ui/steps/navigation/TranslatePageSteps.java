@@ -14,13 +14,13 @@ public class TranslatePageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Переводчик")
+    @Step("Ожидание загрузки страницы Яндекс.Переводчик")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Переводчик была загружена")
+    @Step("Проверить, что страница с Яндекс.Переводчик была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Яндекс.Переводчик – словарь и онлайн перевод на английский, русский, немецкий, французский, украинский и другие языки.";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),

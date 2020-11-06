@@ -14,24 +14,24 @@ public class ComparisonPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы с результатами сравнения товаров")
+    @Step("Ожидание загрузки страницы с результатами сравнения товаров")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
-    @Step(value = "Проверить, что {count}-й элемент из сравнения имеет название '{expectedProductName}'")
+    @Step("Проверить, что {count}-й элемент из сравнения имеет название '{expectedProductName}'")
     public void checkComparableProductName(int count, String expectedProductName) {
         String actualProductName = page.getComparableProductName(count);
         Assertions.assertEquals(expectedProductName, actualProductName,
                 "Название продукта не совпадает с ожидаемым");
     }
 
-    @Step(value = "Удалить {count}-й элемент из сравнения")
+    @Step("Удалить {count}-й элемент из сравнения")
     public void deleteComparedProduct(int count) {
         page.clickDeleteComparisonProduct(count);
     }
 
-    @Step(value = "Проверить, что товары для сравнения отсутствуют и есть сообщение '{expectedMessage}'")
+    @Step("Проверить, что товары для сравнения отсутствуют и есть сообщение '{expectedMessage}'")
     public void checkEmptyComparisonListAndMessage(String expectedMessage) {
         Assertions.assertTrue(page.isComparisonProductsListStale(),
                 "Список сравниваемых товаров не пустой");

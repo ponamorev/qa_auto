@@ -14,7 +14,7 @@ public class MailPageSteps extends BaseSteps {
         page = new MailPage(driver);
     }
 
-    @Step(value = "Нажать кнопку аккаунта и проверить, что там содержится имя пользователя")
+    @Step("Нажать кнопку аккаунта и проверить, что там содержится имя пользователя")
     public void clickAccountAndCheckUserNameIsContained(String expectedUserName) {
         page.clickAccountButton();
         String actualUserName = page.getUserName();
@@ -24,18 +24,18 @@ public class MailPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Почта")
+    @Step("Ожидание загрузки страницы Яндекс.Почта")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
-    @Step(value = "Нажать кнопку выхода из аккаунта")
+    @Step("Нажать кнопку выхода из аккаунта")
     public void clickLogOutButton() {
         page.clickAccountButton();
         page.clickLogoutButton();
     }
 
-    @Step(value = "Нажать кнопку перехода на главную страницу Яндекс")
+    @Step("Нажать кнопку перехода на главную страницу Яндекс")
     public void clickYandexHomeButton() {
         page.clickHomePageButton();
     }

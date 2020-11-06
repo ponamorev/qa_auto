@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions;
 
 @Slf4j
 public abstract class SettingsBaseSteps extends BaseSteps {
-    @Step(value = "Переключиться на вкладку '{tabName}' в настройках Яндекс")
+    @Step("Переключиться на вкладку '{tabName}' в настройках Яндекс")
     protected void clickTabButton(String tabName, SettingsBasePage page) {
         if (tabName.equals("Язык")) {
             page.switchToLanguageTab();

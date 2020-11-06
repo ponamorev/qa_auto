@@ -14,13 +14,13 @@ public class VideoPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Видео")
+    @Step("Ожидание загрузки страницы Яндекс.Видео")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Видео была загружена")
+    @Step("Проверить, что страница с Яндекс.Видео была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Подборки видео для вас — Яндекс.Видео";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),

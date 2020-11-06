@@ -14,13 +14,13 @@ public class MapsPageSteps extends BaseSteps {
     }
 
     @Override
-    @Step(value = "Ожидание загрузки страницы Яндекс.Карты")
+    @Step("Ожидание загрузки страницы Яндекс.Карты")
     public void waitForPageToBeLoaded() {
         page.waitForPageToBeLoaded();
     }
 
     @Override
-    @Step(value = "Проверить, что страница с Яндекс.Карты была загружена")
+    @Step("Проверить, что страница с Яндекс.Карты была загружена")
     public void checkPageHaveBeenLoaded() {
         String expectedPageTitle = "Яндекс.Карты — поиск мест и адресов, городской транспорт";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
