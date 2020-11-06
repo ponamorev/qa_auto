@@ -1,7 +1,8 @@
-package org.example.ui.steps;
+package org.example.ui.steps.navigation;
 
 import io.qameta.allure.Step;
-import org.example.ui.pages.ImagesPage;
+import org.example.ui.pages.navigation.ImagesPage;
+import org.example.ui.steps.BaseSteps;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
