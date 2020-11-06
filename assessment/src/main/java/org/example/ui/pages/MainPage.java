@@ -60,8 +60,10 @@ public class MainPage extends BasePage {
             getClickableElement(settingsDropDownMenuButton).click();
         } catch (ElementNotInteractableException e) {
             log.warn("Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
-            Actions actions = new Actions(driver);
-            actions.moveToElement(getClickableElement(settingsDropDownMenuButton)).perform();
+            new Actions(driver)
+                    .moveToElement(getClickableElement(settingsDropDownMenuButton))
+                    .build()
+                    .perform();
             getClickableElement(settingsDropDownMenuButton).click();
         }
     }

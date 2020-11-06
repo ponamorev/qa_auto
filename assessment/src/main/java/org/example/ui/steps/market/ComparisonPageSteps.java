@@ -25,4 +25,18 @@ public class ComparisonPageSteps extends BaseSteps {
         Assertions.assertEquals(expectedProductName, actualProductName,
                 "Название продукта не совпадает с ожидаемым");
     }
+
+    @Step(value = "Удалить {count}-й элемент из сравнения")
+    public void deleteComparedProduct(int count) {
+        page.clickDeleteComparisonProduct(count);
+    }
+
+    @Step(value = "Проверить, что товары для сравнения отсутствуют и есть сообщение '{expectedMessage}'")
+    public void checkEmptyComparisonListAndMessage(String expectedMessage) {
+        Assertions.assertTrue(page.isComparisonProductsListStale(),
+                "Список сравниваемых товаров не пустой");
+        String actualMessage = page.getNoProductMessageText();
+        Assertions.assertEquals(expectedMessage, actualMessage,
+                "Сообщение об отсутствии товаров не совпадает с ожидаемым");
+    }
 }

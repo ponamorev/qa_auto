@@ -8,6 +8,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 public class YandexMarketTest extends BaseYandexTest {
+    private final String productName = "Note 8";
     private MainPageSteps mainSteps;
     private MarketPageSteps marketSteps;
     private ComparisonPageSteps comparisonSteps;
@@ -25,8 +26,6 @@ public class YandexMarketTest extends BaseYandexTest {
     @Test
     @DisplayName(value = "Проверка сравнения добавленных товаров")
     public void productsComparisonTest() {
-        String productName = "Note 8";
-
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickNavigationButton("Маркет");
         mainSteps.switchToNewTabAndClosePrevious(driver);
@@ -41,5 +40,15 @@ public class YandexMarketTest extends BaseYandexTest {
         comparisonSteps.waitForPageToBeLoaded();
         comparisonSteps.checkComparableProductName(1, firstProductName);
         comparisonSteps.checkComparableProductName(2, secondProductName);
+    }
+
+    @Test
+    @DisplayName(value = "Проверка удаления товаров из сравнения")
+    public void deleteComparedProductsTest() {
+        String message = "Товаров нет";
+        productsComparisonTest();
+        comparisonSteps.deleteComparedProduct(2);
+        comparisonSteps.deleteComparedProduct(1);
+        comparisonSteps.checkEmptyComparisonListAndMessage(message);
     }
 }
