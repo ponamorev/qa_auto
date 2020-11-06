@@ -3,11 +3,9 @@ package org.example.ui;
 import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.example.ui.drivers.Driver;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -18,6 +16,9 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import static org.example.ui.LogToAllure.logDebug;
+import static org.example.ui.LogToAllure.logError;
 
 @Slf4j
 public abstract class BaseYandexTest {
@@ -56,11 +57,11 @@ public abstract class BaseYandexTest {
     }
 
     protected static void takeScreenShotAndFail(WebDriver driver, Exception e) {
-        log.error("There was an error during initialization before or after tests");
+        logError(log, "There was an error during initialization before or after tests");
         if (Objects.nonNull(driver)) {
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         }
-        log.error("Error: ", e);
+        logError(log, "Error: ", e);
         Assertions.fail();
     }
 
@@ -75,12 +76,12 @@ public abstract class BaseYandexTest {
             String propertiesPath = "src/test/resources/tests.properties";
             try (FileInputStream inputStream = new FileInputStream(propertiesPath)) {
                 testsProperties.load(inputStream);
-                log.trace("Successfully load properties for tests");
+                logDebug(log, "Successfully load properties for tests");
             } catch (FileNotFoundException fnfEx) {
-                log.error("Can't find properties file {}:", propertiesPath, fnfEx);
+                logError(log, "Can't find properties file {}:", propertiesPath, fnfEx);
                 throw new RuntimeException("Can't find properties file " + propertiesPath);
             } catch (IOException ioEx) {
-                log.error("Can't read properties from file {}", propertiesPath, ioEx);
+                logError(log, "Can't read properties from file {}", propertiesPath, ioEx);
                 throw new RuntimeException("Can't read properties from file " + propertiesPath);
             }
         }

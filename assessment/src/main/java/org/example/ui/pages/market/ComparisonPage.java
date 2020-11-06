@@ -1,6 +1,7 @@
 package org.example.ui.pages.market;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.ui.LogToAllure;
 import org.example.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
@@ -44,7 +45,7 @@ public class ComparisonPage extends BasePage {
                     .until(ExpectedConditions.stalenessOf(driver.findElement(
                             By.xpath(comparisonProducts))));
         } catch (NoSuchElementException e) {
-            log.info("Element {} was disappeared from DOM", comparisonProducts);
+            LogToAllure.logInfo(log, "Element {} was disappeared from DOM", comparisonProducts);
             result = true;
         }
         return result;

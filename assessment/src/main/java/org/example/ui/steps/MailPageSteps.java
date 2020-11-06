@@ -2,6 +2,7 @@ package org.example.ui.steps;
 
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
+import org.example.ui.LogToAllure;
 import org.example.ui.pages.MailPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,7 @@ public class MailPageSteps extends BaseSteps {
     public void clickAccountAndCheckUserNameIsContained(String expectedUserName) {
         page.clickAccountButton();
         String actualUserName = page.getUserName();
-        log.debug("Actual user name - {}", actualUserName);
+        LogToAllure.logDebug(log, "Actual user name - {}", actualUserName);
         Assertions.assertTrue(actualUserName.contains(expectedUserName),
                 "Имя пользователя не совпадает с ожидаемым");
     }
@@ -33,10 +34,5 @@ public class MailPageSteps extends BaseSteps {
     public void clickLogOutButton() {
         page.clickAccountButton();
         page.clickLogoutButton();
-    }
-
-    @Step("Нажать кнопку перехода на главную страницу Яндекс")
-    public void clickYandexHomeButton() {
-        page.clickHomePageButton();
     }
 }

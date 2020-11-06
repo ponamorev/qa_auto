@@ -1,6 +1,7 @@
 package org.example.ui.pages;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.ui.LogToAllure;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
@@ -59,7 +60,7 @@ public class MainPage extends BasePage {
         try {
             getClickableElement(settingsDropDownMenuButton).click();
         } catch (ElementNotInteractableException e) {
-            log.warn("Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
+            LogToAllure.logWarn(log, "Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
             new Actions(driver)
                     .moveToElement(getClickableElement(settingsDropDownMenuButton))
                     .build()

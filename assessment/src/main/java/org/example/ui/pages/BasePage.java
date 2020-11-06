@@ -3,11 +3,23 @@ package org.example.ui.pages;
 import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Objects;
+
+import static org.example.ui.LogToAllure.logDebug;
+import static org.example.ui.LogToAllure.logError;
+import static org.example.ui.LogToAllure.logWarn;
 
 @Slf4j
 public abstract class BasePage {
@@ -22,7 +34,7 @@ public abstract class BasePage {
         try {
             pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         } catch (TimeoutException e) {
-            log.debug("Can't load page for 10 seconds.. Try again");
+            logDebug(log, "Can't load page for 10 seconds.. Try again");
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         }
@@ -44,7 +56,7 @@ public abstract class BasePage {
         try {
             getClickableElement(element).click();
         } catch (StaleElementReferenceException e) {
-            log.warn("Element {} is absent in DOM, try to find it again..", element);
+            logWarn(log, "Element {} is absent in DOM, try to find it again..", element);
             waitForPageToBeLoaded();
             getClickableElement(element).click();
         }
@@ -54,9 +66,9 @@ public abstract class BasePage {
         WebElement foundElement = null;
         try {
             foundElement = driver.findElement(element);
-            log.debug("Found element [{}]", element);
+            logDebug(log, "Found element [{}]", element);
         } catch (NoSuchElementException e) {
-            log.warn("Can't find element [{}] by implicit wait.. Start explicit wait", element);
+            logWarn(log, "Can't find element [{}] by implicit wait.. Start explicit wait", element);
         }
         if (Objects.nonNull(foundElement)) {
             return foundElement;
@@ -65,10 +77,10 @@ public abstract class BasePage {
             foundElement = isClickable
                     ? new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element))
                     : new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(element));
-            log.debug("Found element [{}] after explicit wait", element);
+            logDebug(log, "Found element [{}] after explicit wait", element);
         } catch (TimeoutException e) {
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
-            log.error("Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
+            logError(log, "Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
             Assertions.fail(String.format("Element [%s] wasn't found by implicit and explicit wait. Check the selector is correct", element));
         }
         return foundElement;

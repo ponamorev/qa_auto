@@ -4,6 +4,7 @@ import io.qameta.allure.Attachment;
 import io.qameta.allure.Step;
 import lombok.extern.slf4j.Slf4j;
 import org.awaitility.Awaitility;
+import org.example.ui.LogToAllure;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -25,7 +26,7 @@ public abstract class BaseSteps {
             tabs = driver.getWindowHandles();
         }
         if (tabs.size() != 2) {
-            log.error("Открыто больше двух вкладок");
+            LogToAllure.logError(log, "Открыто больше двух вкладок");
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             Assertions.fail("Должно быть открыто только две вкладки");
         }

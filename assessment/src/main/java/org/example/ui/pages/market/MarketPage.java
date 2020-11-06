@@ -1,6 +1,7 @@
 package org.example.ui.pages.market;
 
 import lombok.extern.slf4j.Slf4j;
+import org.example.ui.LogToAllure;
 import org.example.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
@@ -50,7 +51,7 @@ public class MarketPage extends BasePage {
         try {
             clickProbablyStaleElement(compareButton);
         } catch (ElementNotInteractableException e) {
-            log.warn("Can't click element {} because of: {}", compareButton, e.getMessage());
+            LogToAllure.logWarn(log, "Can't click element {} because of: {}", compareButton, e.getMessage());
             new WebDriverWait(driver, 10)
                     .until(ExpectedConditions.elementToBeClickable(compareButton))
                     .click();
