@@ -6,7 +6,7 @@ import org.example.ui.steps.navigation.ImagesPageSteps;
 import org.example.ui.steps.MainPageSteps;
 import org.example.ui.steps.navigation.MapsPageSteps;
 import org.example.ui.steps.market.MarketPageSteps;
-import org.example.ui.steps.navigation.MusicPageSteps;
+import org.example.ui.steps.music.MusicPageSteps;
 import org.example.ui.steps.navigation.NewsPageSteps;
 import org.example.ui.steps.navigation.TranslatePageSteps;
 import org.example.ui.steps.navigation.VideoPageSteps;

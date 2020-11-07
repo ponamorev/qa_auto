@@ -1,7 +1,7 @@
-package org.example.ui.steps.navigation;
+package org.example.ui.steps.music;
 
 import io.qameta.allure.Step;
-import org.example.ui.pages.navigation.MusicPage;
+import org.example.ui.pages.music.MusicPage;
 import org.example.ui.steps.BaseSteps;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
@@ -25,5 +25,23 @@ public class MusicPageSteps extends BaseSteps {
         String expectedPageTitle = "Яндекс.Музыка — собираем музыку и подкасты для вас";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Музыка не совпадает с ожидаемым");
+    }
+
+    @Step("Закрыть предложение о покупке Яндекс.Плюс")
+    public void closeYandexPlusOffer() {
+        page.clickCloseYandexPlusOfferHeaderButton();
+    }
+
+    @Step("Ввести в поиск артиста {artistName}")
+    public void sendArtistToSearch(String artistName) {
+        page.clearMusicSearchInput();
+        page.clickMusicSearchInput();
+        page.sendSearchStringToInput(artistName);
+        page.waitForPageToBeLoaded();
+    }
+
+    @Step("Выбрать {artistName} из выпадающего списка с предложениями")
+    public void chooseArtistFromDropDownSuggestList(String artistName) {
+        page.clickSuggestingArtistFromList(artistName);
     }
 }
