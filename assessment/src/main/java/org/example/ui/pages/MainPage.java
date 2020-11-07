@@ -60,7 +60,8 @@ public class MainPage extends BasePage {
         try {
             getClickableElement(settingsDropDownMenuButton).click();
         } catch (ElementNotInteractableException e) {
-            LogToAllure.logWarn(log, "Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
+            log.warn("Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
+            LogToAllure.logWarn("Can't find element {} on the screen, search element after scroll down the screen..", settingsDropDownMenuButton);
             new Actions(driver)
                     .moveToElement(getClickableElement(settingsDropDownMenuButton))
                     .build()

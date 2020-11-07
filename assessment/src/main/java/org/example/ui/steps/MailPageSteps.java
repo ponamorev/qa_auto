@@ -19,7 +19,8 @@ public class MailPageSteps extends BaseSteps {
     public void clickAccountAndCheckUserNameIsContained(String expectedUserName) {
         page.clickAccountButton();
         String actualUserName = page.getUserName();
-        LogToAllure.logDebug(log, "Actual user name - {}", actualUserName);
+        log.debug("Actual user name - {}", actualUserName);
+        LogToAllure.logDebug("Actual user name - {}", actualUserName);
         Assertions.assertTrue(actualUserName.contains(expectedUserName),
                 "Имя пользователя не совпадает с ожидаемым");
     }

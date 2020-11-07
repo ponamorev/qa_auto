@@ -59,4 +59,9 @@ public class MarketPageSteps extends BaseSteps {
     public void clickElectronicsTabButton() {
         page.clickElectronicsTabButton();
     }
+
+    @Step("Нажать кнопку вкладки 'Бытовая техника'")
+    public void clickAppliancesTabButton() {
+        page.clickAppliancesTabButton();
+    }
 }

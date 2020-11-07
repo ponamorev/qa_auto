@@ -1,10 +1,8 @@
 package org.example.ui.pages.market;
 
-import lombok.extern.slf4j.Slf4j;
 import org.example.ui.pages.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 

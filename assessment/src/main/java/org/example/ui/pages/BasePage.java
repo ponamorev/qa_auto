@@ -34,7 +34,8 @@ public abstract class BasePage {
         try {
             pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         } catch (TimeoutException e) {
-            logDebug(log, "Can't load page for 10 seconds.. Try again");
+            log.debug("Can't load page for 10 seconds.. Try again");
+            logDebug("Can't load page for 10 seconds.. Try again");
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         }
@@ -56,7 +57,8 @@ public abstract class BasePage {
         try {
             getClickableElement(element).click();
         } catch (StaleElementReferenceException e) {
-            logWarn(log, "Element {} is absent in DOM, try to find it again..", element);
+            log.warn("Element {} is absent in DOM, try to find it again..", element);
+            logWarn("Element {} is absent in DOM, try to find it again..", element);
             waitForPageToBeLoaded();
             getClickableElement(element).click();
         }
@@ -66,9 +68,11 @@ public abstract class BasePage {
         WebElement foundElement = null;
         try {
             foundElement = driver.findElement(element);
-            logDebug(log, "Found element [{}]", element);
+            log.debug("Found element [{}]", element);
+            logDebug("Found element [{}]", element);
         } catch (NoSuchElementException e) {
-            logWarn(log, "Can't find element [{}] by implicit wait.. Start explicit wait", element);
+            log.warn("Can't find element [{}] by implicit wait.. Start explicit wait", element);
+            logWarn("Can't find element [{}] by implicit wait.. Start explicit wait", element);
         }
         if (Objects.nonNull(foundElement)) {
             return foundElement;
@@ -77,10 +81,12 @@ public abstract class BasePage {
             foundElement = isClickable
                     ? new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element))
                     : new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(element));
-            logDebug(log, "Found element [{}] after explicit wait", element);
+            log.debug("Found element [{}] after explicit wait", element);
+            logDebug("Found element [{}] after explicit wait", element);
         } catch (TimeoutException e) {
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
-            logError(log, "Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
+            log.error("Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
+            logError("Element [{}] wasn't found by implicit and explicit wait. Check the selector is correct", element);
             Assertions.fail(String.format("Element [%s] wasn't found by implicit and explicit wait. Check the selector is correct", element));
         }
         return foundElement;

@@ -26,7 +26,8 @@ public abstract class BaseSteps {
             tabs = driver.getWindowHandles();
         }
         if (tabs.size() != 2) {
-            LogToAllure.logError(log, "Открыто больше двух вкладок");
+            log.error("Открыто больше двух вкладок");
+            LogToAllure.logError("Открыто больше двух вкладок");
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
             Assertions.fail("Должно быть открыто только две вкладки");
         }
@@ -43,7 +44,7 @@ public abstract class BaseSteps {
     }
 
     @Attachment(value = "Снимок экрана", type = "image/png")
-    private static byte[] saveScreenshot(byte[] screenShot) {
+    protected static byte[] saveScreenshot(byte[] screenShot) {
         return screenShot;
     }
 }

@@ -11,10 +11,6 @@ import java.io.IOException;
 import java.util.Objects;
 import java.util.Properties;
 
-import static org.example.ui.LogToAllure.logDebug;
-import static org.example.ui.LogToAllure.logError;
-import static org.example.ui.LogToAllure.logInfo;
-import static org.example.ui.LogToAllure.logWarn;
 import static org.example.ui.drivers.Browser.CHROME;
 import static org.example.ui.drivers.Browser.FIREFOX;
 import static org.example.ui.drivers.Browser.OPERA;
@@ -28,7 +24,7 @@ public class Driver {
     public static WebDriver getWebDriver() {
         initProperties();
         if (webDriver == null) {
-            logInfo(log, "WebDriver is null, initiate new WebDriver");
+            log.info("WebDriver is null, initiate new WebDriver");
             webDriver = getDriver();
         }
         return webDriver;
@@ -36,7 +32,7 @@ public class Driver {
 
     public static void closeWebDriver() {
         if (Objects.nonNull(webDriver)) {
-            logInfo(log, "Driver is not null - call quit() method..");
+            log.info("Driver is not null - call quit() method..");
             webDriver.quit();
             webDriver = null;
         }
@@ -53,12 +49,12 @@ public class Driver {
                 System.setProperty(CHROME.getWebDriverPropName(), pathToChromeDriver);
                 System.setProperty(FIREFOX.getWebDriverPropName(), pathToFirefoxDriver);
                 System.setProperty(OPERA.getWebDriverPropName(), pathToOperaDriver);
-                logDebug(log, "Properties with information about WebDriver was uploaded to program");
+                log.debug("Properties with information about WebDriver was uploaded to program");
             } catch (FileNotFoundException fnfEx) {
-                logError(log, "File with properties wasn't found by path src/main/resources/driver.properties", fnfEx);
+                log.error("File with properties wasn't found by path src/main/resources/driver.properties", fnfEx);
                 throw new RuntimeException("Check configuration for driver initialization");
             } catch (IOException ioEx) {
-                logError(log, "There was unexpected IO error, properties for WebDriver may be not initiated", ioEx);
+                log.error("There was unexpected IO error, properties for WebDriver may be not initiated", ioEx);
             }
         }
     }
@@ -74,7 +70,7 @@ public class Driver {
             case OPERA:
                 return OperaWebDriver.getDriver(webDriverProperties);
             default:
-                logWarn(log, "Browser wasn't specified, start test with Chrome..");
+                log.warn("Browser wasn't specified, start test with Chrome..");
                 return ChromeWebDriver.getDriver(webDriverProperties);
         }
     }

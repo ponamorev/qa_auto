@@ -17,7 +17,6 @@ import java.util.Objects;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import static org.example.ui.LogToAllure.logDebug;
 import static org.example.ui.LogToAllure.logError;
 
 @Slf4j
@@ -57,11 +56,13 @@ public abstract class BaseYandexTest {
     }
 
     protected static void takeScreenShotAndFail(WebDriver driver, Exception e) {
-        logError(log, "There was an error during initialization before or after tests");
+        log.error("There was an error during initialization before or after tests");
+        logError("There was an error during initialization before or after tests");
         if (Objects.nonNull(driver)) {
             saveScreenshot(((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES));
         }
-        logError(log, "Error: ", e);
+        log.error("Error: ", e);
+        logError("Error: ", e);
         Assertions.fail();
     }
 
@@ -76,12 +77,12 @@ public abstract class BaseYandexTest {
             String propertiesPath = "src/test/resources/tests.properties";
             try (FileInputStream inputStream = new FileInputStream(propertiesPath)) {
                 testsProperties.load(inputStream);
-                logDebug(log, "Successfully load properties for tests");
+                log.debug("Successfully load properties for tests");
             } catch (FileNotFoundException fnfEx) {
-                logError(log, "Can't find properties file {}:", propertiesPath, fnfEx);
+                log.error("Can't find properties file {}:", propertiesPath, fnfEx);
                 throw new RuntimeException("Can't find properties file " + propertiesPath);
             } catch (IOException ioEx) {
-                logError(log, "Can't read properties from file {}", propertiesPath, ioEx);
+                log.error("Can't read properties from file {}", propertiesPath, ioEx);
                 throw new RuntimeException("Can't read properties from file " + propertiesPath);
             }
         }

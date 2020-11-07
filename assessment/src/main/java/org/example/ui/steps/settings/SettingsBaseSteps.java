@@ -14,7 +14,8 @@ public abstract class SettingsBaseSteps extends BaseSteps {
         if (tabName.equals("Язык")) {
             page.switchToLanguageTab();
         } else {
-            LogToAllure.logError(log, "Вкладка {} не добавлена для перехода, необходимо дополнить метод", tabName);
+            log.error("Вкладка {} не добавлена для перехода, необходимо дополнить метод", tabName);
+            LogToAllure.logError("Вкладка {} не добавлена для перехода, необходимо дополнить метод", tabName);
             Assertions.fail(String.format("Вкладка %s не добавлена для перехода, необходимо дополнить метод", tabName));
         }
     }

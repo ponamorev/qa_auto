@@ -1,6 +1,7 @@
 package org.example.ui;
 
 import org.example.ui.steps.MainPageSteps;
+import org.example.ui.steps.market.AppliancesMarketPageSteps;
 import org.example.ui.steps.market.ComparisonPageSteps;
 import org.example.ui.steps.market.ElectronicsMarketPageSteps;
 import org.example.ui.steps.market.MarketPageSteps;
@@ -13,6 +14,7 @@ public class YandexMarketTest extends BaseYandexTest {
     private MarketPageSteps marketSteps;
     private ComparisonPageSteps comparisonSteps;
     private ElectronicsMarketPageSteps electronicsSteps;
+    private AppliancesMarketPageSteps appliancesSteps;
 
     @BeforeEach
     public void testSetUp() {
@@ -23,16 +25,14 @@ public class YandexMarketTest extends BaseYandexTest {
         marketSteps = new MarketPageSteps(driver);
         comparisonSteps = new ComparisonPageSteps(driver);
         electronicsSteps = new ElectronicsMarketPageSteps(driver);
+        appliancesSteps = new AppliancesMarketPageSteps(driver);
     }
 
     @Test
     @DisplayName("Проверка сравнения добавленных товаров")
     public void productsComparisonTest() {
-        mainSteps.waitForPageToBeLoaded();
-        mainSteps.clickNavigationButton("Маркет");
-        mainSteps.switchToNewTabAndClosePrevious(driver);
-        marketSteps.waitForPageToBeLoaded();
         String productName = "Note 8";
+        goToMarketPage();
         marketSteps.setProductNameAndSearch(productName);
         marketSteps.waitForPageToBeLoaded();
         String firstProductName = marketSteps.getFirstProductName();
@@ -58,14 +58,29 @@ public class YandexMarketTest extends BaseYandexTest {
     @Test
     @DisplayName("Проверка сортировки цены на списке товаров")
     public void sortProductsByPricesTest() {
-        mainSteps.waitForPageToBeLoaded();
-        mainSteps.clickNavigationButton("Маркет");
-        mainSteps.switchToNewTabAndClosePrevious(driver);
-        marketSteps.waitForPageToBeLoaded();
+        goToMarketPage();
         marketSteps.clickElectronicsTabButton();
         electronicsSteps.waitForPageToBeLoaded();
         electronicsSteps.goToActionCameras();
         electronicsSteps.sortProductsByPriceDesc();
         electronicsSteps.checkTopFiveProductsForPriceDecreasing();
+    }
+
+    @Test
+    @DisplayName("Проверка фильтрации продуктов по ширине")
+    public void filterProductsByWidth() {
+        goToMarketPage();
+        marketSteps.clickAppliancesTabButton();
+        appliancesSteps.waitForPageToBeLoaded();
+        appliancesSteps.clickFridgeButton();
+        appliancesSteps.setWidthForFridge(50);
+        appliancesSteps.checkResultFridgesHaveWidthLessOrEqualTo(driver, 50);
+    }
+
+    private void goToMarketPage() {
+        mainSteps.waitForPageToBeLoaded();
+        mainSteps.clickNavigationButton("Маркет");
+        mainSteps.switchToNewTabAndClosePrevious(driver);
+        marketSteps.waitForPageToBeLoaded();
     }
 }

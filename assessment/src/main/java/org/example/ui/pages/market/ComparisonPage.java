@@ -45,7 +45,8 @@ public class ComparisonPage extends BasePage {
                     .until(ExpectedConditions.stalenessOf(driver.findElement(
                             By.xpath(comparisonProducts))));
         } catch (NoSuchElementException e) {
-            LogToAllure.logInfo(log, "Element {} was disappeared from DOM", comparisonProducts);
+            log.info("Element {} was disappeared from DOM", comparisonProducts);
+            LogToAllure.logInfo("Element {} was disappeared from DOM", comparisonProducts);
             result = true;
         }
         return result;
