@@ -52,6 +52,12 @@ public class MainPageSteps extends BaseSteps {
         }
     }
 
+    @Step("Перейти на страницу Кинопоиска")
+    public void goToKinopoiskPage() {
+        page.clickMoreMenuButton();
+        page.clickKinopoiskButton();
+    }
+
     @Step("Перейти на страницу настроек")
     public void goToSettingsPage() {
         page.clickSettingsDropDownMenuButton();

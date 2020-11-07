@@ -10,13 +10,15 @@ import org.openqa.selenium.interactions.Actions;
 @Slf4j
 public class MainPage extends BasePage {
     private final By loginButton = By.cssSelector(".button.desk-notif-card__login-enter-expanded");
-    private final By videoButton = By.xpath("//*[@data-id='video']");
-    private final By imagesButton = By.xpath("//*[@data-id='images']");
-    private final By newsButton = By.xpath("//*[@data-id='news']");
-    private final By mapsButton = By.xpath("//*[@data-id='maps']");
-    private final By marketButton = By.xpath("//*[@data-id='market']");
-    private final By translateButton = By.xpath("//*[@data-id='translate']");
-    private final By musicButton = By.xpath("//*[@data-id='music']");
+    private final By videoButton = By.xpath("//a[@data-id='video']");
+    private final By imagesButton = By.xpath("//a[@data-id='images']");
+    private final By newsButton = By.xpath("//a[@data-id='news']");
+    private final By mapsButton = By.xpath("//a[@data-id='maps']");
+    private final By marketButton = By.xpath("//a[@data-id='market']");
+    private final By translateButton = By.xpath("//a[@data-id='translate']");
+    private final By musicButton = By.xpath("//a[@data-id='music']");
+    private final By moreMenuButton = By.xpath("//a[@data-id='more']");
+    private final By kinopoiskButton = By.xpath("//a[@data-id='kinopoisk_old']");
     private final By settingsDropDownMenuButton = By.xpath("//a[@role='button']/parent::div[contains(@class, 'dropdown2')]");
     private final By portalSettingsButton = By.xpath("//a[@data-statlog='head.settings.other']");
 
@@ -54,6 +56,14 @@ public class MainPage extends BasePage {
 
     public void clickMusicButton() {
         getClickableElement(musicButton).click();
+    }
+
+    public void clickMoreMenuButton() {
+        getClickableElement(moreMenuButton).click();
+    }
+
+    public void clickKinopoiskButton() {
+        getClickableElement(kinopoiskButton).click();
     }
 
     public void clickSettingsDropDownMenuButton() {
