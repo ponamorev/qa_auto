@@ -41,6 +41,18 @@ public class YandexMusicTest extends BaseYandexTest {
         artistSteps.checkPopularAlbumsArtistEqualTo(artist);
     }
 
+    @Test
+    @DisplayName("Проверка воспроизведения музыки")
+    public void playMusicTest() {
+        String searchText = "beyo";
+        String artist = "Beyoncé";
+        musicSteps.sendArtistToSearch(searchText);
+        musicSteps.chooseArtistFromDropDownSuggestList(artist);
+        artistSteps.waitForPageToBeLoaded();
+        artistSteps.playFirstPopularSong();
+        artistSteps.checkSongIsPlaying();
+    }
+
     private void logIn() {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickLoginButton();

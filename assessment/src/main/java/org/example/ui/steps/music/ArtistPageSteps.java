@@ -41,4 +41,15 @@ public class ArtistPageSteps extends BaseSteps {
         Assertions.assertEquals(8, artistNames.size(),
                 "Не все альбомы имеют исполнителя " + artist);
     }
+
+    @Step("Включить первую песню из популярных")
+    public void playFirstPopularSong() {
+        Assertions.assertFalse(page.isPlayingSongExists(), "На странице уже есть проигрываемая песня");
+        page.clickPopularSongByIndex(1);
+    }
+
+    @Step("Проверить, что песня проигрывается")
+    public void checkSongIsPlaying() {
+        Assertions.assertTrue(page.isPlayingSongExists(), "На странице отсутствуют воспроизводимые песни");
+    }
 }
