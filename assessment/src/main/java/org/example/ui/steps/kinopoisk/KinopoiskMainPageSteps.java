@@ -1,10 +1,14 @@
 package org.example.ui.steps.kinopoisk;
 
 import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
+import org.example.ui.LogToAllure;
 import org.example.ui.pages.kinopoisk.KinopoiskMainPage;
 import org.example.ui.steps.BaseSteps;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 
+@Slf4j
 public class KinopoiskMainPageSteps extends BaseSteps {
     private final KinopoiskMainPage page;
 
@@ -28,5 +32,17 @@ public class KinopoiskMainPageSteps extends BaseSteps {
     @Step("Выбрать {index}-й элемент из предлагаемых фильмов")
     public void chooseFilmFromSuggested(int index) {
         page.clickSuggestedSearchOption(index);
+    }
+
+    @Step("Нажать ссылку на 250 лучших фильмов")
+    public void clickFilmListLink() {
+        try {
+            page.clickDirectFilmListLink();
+        } catch (ElementNotVisibleException e) {
+            log.warn("Ссылка на список фильмов отсутствует на основном экране");
+            LogToAllure.logWarn("Ссылка на список фильмов отсутствует на основном экране");
+            page.clickMenuButton();
+            page.clickMenuFilmListLink();
+        }
     }
 }
