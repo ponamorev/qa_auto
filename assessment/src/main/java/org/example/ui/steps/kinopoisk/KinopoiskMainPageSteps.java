@@ -45,4 +45,9 @@ public class KinopoiskMainPageSteps extends BaseSteps {
             page.clickMenuFilmListLink();
         }
     }
+
+    @Step("Перейти к расширенным настройкам поиска")
+    public void clickAdvancedSearchSettingsButton() {
+        page.clickAdvancedSearchSettingsButton();
+    }
 }
