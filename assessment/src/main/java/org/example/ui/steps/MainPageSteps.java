@@ -76,4 +76,12 @@ public class MainPageSteps extends BaseSteps {
         Assertions.assertTrue(page.getDollarCurrencyRate().compareTo(rubles) > 0,
                 String.format("Курс доллара меньше %s за 1$", rubles.toString()));
     }
+
+    @Step("Ввести текст '{searchText}' в строку поиска и нажать кнопку 'Найти'")
+    public void sendTextToSearchAndSubmit(String searchText) {
+        page.clearSearchInput();
+        page.clickSearchInput();
+        page.sendTextToSearchInput(searchText);
+        page.clickSubmitSearchButton();
+    }
 }

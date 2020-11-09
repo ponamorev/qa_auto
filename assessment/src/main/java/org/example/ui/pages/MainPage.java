@@ -26,6 +26,8 @@ public class MainPage extends BasePage {
     private final By portalSettingsButton = By.xpath("//a[@data-statlog='head.settings.other']");
     private final By moreStocksButton = By.xpath("//span[@data-statlog='news_rates_manual.more']");
     private final By dollarCurrencyStocksRate = By.xpath("//tr[@class='inline-stocks__row_id_1']//i[@class='inline-stocks__cell']");
+    private final By searchInput = By.id("text");
+    private final By submitSearchButton = By.xpath("//button[@type='submit']");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -104,5 +106,21 @@ public class MainPage extends BasePage {
             Assertions.fail(String.format("Проблема с приведением строки %s к BigDecimal", dollarRate));
             return BigDecimal.ZERO;
         }
+    }
+
+    public void clearSearchInput() {
+        getClickableElement(searchInput).clear();
+    }
+
+    public void clickSearchInput() {
+        getClickableElement(searchInput).click();
+    }
+
+    public void sendTextToSearchInput(String text) {
+        getClickableElement(searchInput).sendKeys(text);
+    }
+
+    public void clickSubmitSearchButton() {
+        getClickableElement(submitSearchButton).click();
     }
 }
