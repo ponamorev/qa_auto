@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Яндекс.Музыка")
 public class YandexMusicTest extends BaseYandexTest {
     private MainPageSteps mainSteps;
     private LoginPageSteps loginSteps;

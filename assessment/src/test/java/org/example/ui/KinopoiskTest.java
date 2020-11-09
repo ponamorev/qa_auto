@@ -10,6 +10,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Кинопоиск")
 public class KinopoiskTest extends BaseYandexTest {
     private final String shawshankRedemptionFilm = "Побег из Шоушенка";
     private final int shawshankRedemptionFilmReleaseYear = 1994;
@@ -32,6 +33,8 @@ public class KinopoiskTest extends BaseYandexTest {
         filmListSteps = new FilmListPageSteps(driver);
         advancedSearchSteps = new AdvancedSearchPageSteps(driver);
         searchResultSteps = new SearchResultPageSteps(driver);
+
+        goToKinopoisk();
     }
 
     @Test
@@ -39,7 +42,6 @@ public class KinopoiskTest extends BaseYandexTest {
     public void kinopoiskFilmSearchTest() {
         String searchText = "Побег из Ш";
 
-        goToKinopoisk();
         kinopoiskMainSteps.sendTextToSearchInput(searchText);
         kinopoiskMainSteps.chooseFilmFromSuggested(1);
         kinopoiskFilmSteps.waitForPageToBeLoaded();
@@ -49,12 +51,14 @@ public class KinopoiskTest extends BaseYandexTest {
     @Test
     @DisplayName("Проверка первого фильма из списка 250 лучших фильмов")
     public void checkFirstFilmFromListTest() {
-        goToKinopoisk();
+        String filmName = "Зеленая миля";
+        int releaseYear = 1999;
+
         kinopoiskMainSteps.clickFilmListLink();
         filmListSteps.waitForPageToBeLoaded();
         filmListSteps.clickTop250FilmsLink();
         filmListSteps.waitForPageToBeLoaded();
-        filmListSteps.checkFirstFilmNameAndReleaseYear(shawshankRedemptionFilm, shawshankRedemptionFilmReleaseYear);
+        filmListSteps.checkFirstFilmNameAndReleaseYear(filmName, releaseYear);
     }
 
     @Test
@@ -66,7 +70,6 @@ public class KinopoiskTest extends BaseYandexTest {
         String filmName = "Время ДДТ";
         int filmReleaseYear = 2002;
 
-        goToKinopoisk();
         kinopoiskMainSteps.clickAdvancedSearchSettingsButton();
         advancedSearchSteps.waitForPageToBeLoaded();
         advancedSearchSteps.selectCountry(country);

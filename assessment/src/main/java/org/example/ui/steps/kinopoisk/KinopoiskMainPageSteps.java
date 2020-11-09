@@ -34,7 +34,7 @@ public class KinopoiskMainPageSteps extends BaseSteps {
         page.clickSuggestedSearchOption(index);
     }
 
-    @Step("Нажать ссылку на 250 лучших фильмов")
+    @Step("Нажать на ссылку 'Списки фильмов'")
     public void clickFilmListLink() {
         try {
             page.clickDirectFilmListLink();

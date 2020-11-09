@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+@DisplayName("Яндекс.Маркет")
 public class YandexMarketTest extends BaseYandexTest {
     private MainPageSteps mainSteps;
     private MarketPageSteps marketSteps;

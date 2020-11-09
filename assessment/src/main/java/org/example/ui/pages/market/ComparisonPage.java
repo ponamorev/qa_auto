@@ -14,20 +14,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 @Slf4j
 public class ComparisonPage extends BasePage {
     private final By noProductMessage = By.className("_1uGSd1UzAC");
-    private final String comparisonProducts = "//div[@class='LwwocgVx0q zvRJMhRW-w']";
-    private final String comparisonProductItem = comparisonProducts + "[%d]";
+    private final String comparisonProductItem = "(//a[contains(@class,'PzFNvA3yUm')])[%d]";
 
     public ComparisonPage(WebDriver driver) {
         super(driver);
     }
 
     public String getComparableProductName(int count) {
-        String comparisonProductLink = comparisonProductItem + "/a";
-        return getClickableElement(By.xpath(String.format(comparisonProductLink, count))).getText();
+        return getClickableElement(By.xpath(String.format(comparisonProductItem, count))).getText();
     }
 
     public void clickDeleteComparisonProduct(int count) {
-        String deleteComparisonProductButton = comparisonProductItem + "//div[@class='_3_z1ZpyV9T']";
+        String deleteComparisonProductButton = comparisonProductItem + "/parent::div//div[@class='_3_z1ZpyV9T']";
         WebElement product = getClickableElement(By.xpath(String.format(deleteComparisonProductButton, count)));
         new Actions(driver)
                 .moveToElement(product)
@@ -42,11 +40,10 @@ public class ComparisonPage extends BasePage {
         boolean result;
         try {
             result = new WebDriverWait(driver, 10)
-                    .until(ExpectedConditions.stalenessOf(driver.findElement(
-                            By.xpath(comparisonProducts))));
+                    .until(ExpectedConditions.stalenessOf(driver.findElement(By.xpath(comparisonProductItem))));
         } catch (NoSuchElementException e) {
-            log.info("Element {} was disappeared from DOM", comparisonProducts);
-            LogToAllure.logInfo("Element {} was disappeared from DOM", comparisonProducts);
+            log.info("Element {} was disappeared from DOM", comparisonProductItem);
+            LogToAllure.logInfo("Element {} was disappeared from DOM", comparisonProductItem);
             result = true;
         }
         return result;

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import java.math.BigDecimal;
 
 @Slf4j
+@DisplayName("Главная страница")
 public class YandexMainTest extends BaseYandexTest {
     private MainPageSteps mainSteps;
     private VideoPageSteps videoSteps;
