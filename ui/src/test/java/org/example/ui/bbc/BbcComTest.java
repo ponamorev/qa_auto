@@ -20,7 +20,7 @@ public class BbcComTest {
         String url = "https://www.bbc.com";
 
         driver.manage().window().maximize();
-        driver.manage().timeouts().pageLoadTimeout(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         driver.get(url);
     }
 
