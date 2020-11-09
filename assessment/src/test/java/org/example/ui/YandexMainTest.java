@@ -14,6 +14,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 @Slf4j
 public class YandexMainTest extends BaseYandexTest {
     private MainPageSteps mainSteps;
@@ -50,6 +52,16 @@ public class YandexMainTest extends BaseYandexTest {
         checkNavigationToPage(marketSteps, "Маркет");
         checkNavigationToPage(translateSteps, "Переводчик");
         checkNavigationToPage(musicSteps, "Музыка");
+    }
+
+    @Test
+    @DisplayName("Проверка, что курс доллара по-прежнему больше 75 рублей за 1$")
+    public void dollarToRubleTest() {
+        BigDecimal rubles = new BigDecimal("75");
+
+        mainSteps.waitForPageToBeLoaded();
+        mainSteps.clickMoreStocksButton();
+        mainSteps.checkDollarsCurrencyRateMoreThanExpected(rubles);
     }
 
     private void checkNavigationToPage(BaseSteps steps, String section) {

@@ -2,10 +2,13 @@ package org.example.ui.pages;
 
 import lombok.extern.slf4j.Slf4j;
 import org.example.ui.LogToAllure;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+
+import java.math.BigDecimal;
 
 @Slf4j
 public class MainPage extends BasePage {
@@ -21,6 +24,8 @@ public class MainPage extends BasePage {
     private final By kinopoiskButton = By.xpath("//a[@data-id='kinopoisk_old']");
     private final By settingsDropDownMenuButton = By.xpath("//a[@role='button']/parent::div[contains(@class, 'dropdown2')]");
     private final By portalSettingsButton = By.xpath("//a[@data-statlog='head.settings.other']");
+    private final By moreStocksButton = By.xpath("//span[@data-statlog='news_rates_manual.more']");
+    private final By dollarCurrencyStocksRate = By.xpath("//tr[@class='inline-stocks__row_id_1']//i[@class='inline-stocks__cell']");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -82,5 +87,22 @@ public class MainPage extends BasePage {
 
     public void clickPortalSettingsButton() {
         getClickableElement(portalSettingsButton).click();
+    }
+
+    public void clickMoreStocksButton() {
+        getClickableElement(moreStocksButton).click();
+    }
+
+    public BigDecimal getDollarCurrencyRate() {
+        String dollarRate = getElement(dollarCurrencyStocksRate).getText();
+        dollarRate = dollarRate.replace(",", ".");
+        try {
+            return new BigDecimal(dollarRate);
+        } catch (NumberFormatException e) {
+            log.error("Проблема с приведением строки {} к BigDecimal", dollarRate);
+            LogToAllure.logError("Проблема с приведением строки {} к BigDecimal", dollarRate);
+            Assertions.fail(String.format("Проблема с приведением строки %s к BigDecimal", dollarRate));
+            return BigDecimal.ZERO;
+        }
     }
 }

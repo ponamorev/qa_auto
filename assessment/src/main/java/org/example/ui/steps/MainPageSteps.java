@@ -5,6 +5,8 @@ import org.example.ui.pages.MainPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
+import java.math.BigDecimal;
+
 public class MainPageSteps extends BaseSteps {
     private final MainPage page;
 
@@ -62,5 +64,16 @@ public class MainPageSteps extends BaseSteps {
     public void goToSettingsPage() {
         page.clickSettingsDropDownMenuButton();
         page.clickPortalSettingsButton();
+    }
+
+    @Step("Нажать кнопку 'Ещё' рядом с котировками")
+    public void clickMoreStocksButton() {
+        page.clickMoreStocksButton();
+    }
+
+    @Step("Проверить, что курс доллара больше {rubles}")
+    public void checkDollarsCurrencyRateMoreThanExpected(BigDecimal rubles) {
+        Assertions.assertTrue(page.getDollarCurrencyRate().compareTo(rubles) > 0,
+                String.format("Курс доллара меньше %s за 1$", rubles.toString()));
     }
 }
