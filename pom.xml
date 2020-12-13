@@ -13,6 +13,7 @@
         <module>ui</module>
         <module>assessment</module>
         <module>patterns</module>
+        <module>oauth</module>
     </modules>
 
     <properties>
