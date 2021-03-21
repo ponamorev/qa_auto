@@ -13,6 +13,7 @@
         <module>ui</module>
         <module>assessment</module>
         <module>patterns</module>
+        <module>db</module>
     </modules>
 
     <properties>
