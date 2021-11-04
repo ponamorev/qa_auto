@@ -1,9 +1,17 @@
 package org.example.ui.drivers;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,12 +51,12 @@ public class Driver {
             webDriverProperties = new Properties();
             try (FileInputStream inputStream = new FileInputStream("src/main/resources/driver.properties")) {
                 webDriverProperties.load(inputStream);
-                String pathToChromeDriver = webDriverProperties.getProperty(CHROME.getWebDriverPropName());
-                String pathToFirefoxDriver = webDriverProperties.getProperty(FIREFOX.getWebDriverPropName());
-                String pathToOperaDriver = webDriverProperties.getProperty(OPERA.getWebDriverPropName());
-                System.setProperty(CHROME.getWebDriverPropName(), pathToChromeDriver);
-                System.setProperty(FIREFOX.getWebDriverPropName(), pathToFirefoxDriver);
-                System.setProperty(OPERA.getWebDriverPropName(), pathToOperaDriver);
+//                String pathToChromeDriver = webDriverProperties.getProperty(CHROME.getWebDriverPropName());
+//                String pathToFirefoxDriver = webDriverProperties.getProperty(FIREFOX.getWebDriverPropName());
+//                String pathToOperaDriver = webDriverProperties.getProperty(OPERA.getWebDriverPropName());
+//                System.setProperty(CHROME.getWebDriverPropName(), pathToChromeDriver);
+//                System.setProperty(FIREFOX.getWebDriverPropName(), pathToFirefoxDriver);
+//                System.setProperty(OPERA.getWebDriverPropName(), pathToOperaDriver);
                 log.debug("Properties with information about WebDriver was uploaded to program");
             } catch (FileNotFoundException fnfEx) {
                 log.error("File with properties wasn't found by path src/main/resources/driver.properties", fnfEx);
@@ -64,14 +72,43 @@ public class Driver {
         Browser browser = Browser.valueOf(browserName);
         switch (browser) {
             case FIREFOX:
-                return FirefoxWebDriver.getDriver(webDriverProperties);
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions firefoxOptions = new FirefoxOptions();
+                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
+                    firefoxOptions.setHeadless(true);
+                    firefoxOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+                }
+                firefoxOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+                return new FirefoxDriver(firefoxOptions);
             case CHROME:
-                return ChromeWebDriver.getDriver(webDriverProperties);
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions = new ChromeOptions();
+                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
+                    chromeOptions.setHeadless(true);
+                    chromeOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+                }
+                chromeOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+                return new ChromeDriver(chromeOptions);
             case OPERA:
-                return OperaWebDriver.getDriver(webDriverProperties);
+                WebDriverManager.operadriver().setup();
+                OperaOptions operaOptions = new OperaOptions();
+                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
+                    operaOptions.addArguments("--headless");
+                    operaOptions.addArguments("--disable-dev-shm-usage");
+                }
+                operaOptions.addArguments("--remote-debugging-port=9222");
+                operaOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+                return new OperaDriver(operaOptions);
             default:
                 log.warn("Browser wasn't specified, start test with Chrome..");
-                return ChromeWebDriver.getDriver(webDriverProperties);
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions defaultOptions = new ChromeOptions();
+                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
+                    defaultOptions.setHeadless(true);
+                    defaultOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
+                }
+                defaultOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+                return new ChromeDriver(defaultOptions);
         }
     }
 }

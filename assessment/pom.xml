@@ -12,7 +12,8 @@
     <artifactId>assessment</artifactId>
 
     <properties>
-        <awaitility.version>4.0.3</awaitility.version>
+        <awaitility.version>4.1.1</awaitility.version>
+        <webdriver.manager.version>5.0.3</webdriver.manager.version>
     </properties>
 
     <build>
@@ -35,6 +36,11 @@
             <groupId>org.awaitility</groupId>
             <artifactId>awaitility</artifactId>
             <version>${awaitility.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.github.bonigarcia</groupId>
+            <artifactId>webdrivermanager</artifactId>
+            <version>${webdriver.manager.version}</version>
         </dependency>
     </dependencies>
 
