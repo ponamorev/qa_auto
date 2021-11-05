@@ -51,12 +51,6 @@ public class Driver {
             webDriverProperties = new Properties();
             try (FileInputStream inputStream = new FileInputStream("src/main/resources/driver.properties")) {
                 webDriverProperties.load(inputStream);
-//                String pathToChromeDriver = webDriverProperties.getProperty(CHROME.getWebDriverPropName());
-//                String pathToFirefoxDriver = webDriverProperties.getProperty(FIREFOX.getWebDriverPropName());
-//                String pathToOperaDriver = webDriverProperties.getProperty(OPERA.getWebDriverPropName());
-//                System.setProperty(CHROME.getWebDriverPropName(), pathToChromeDriver);
-//                System.setProperty(FIREFOX.getWebDriverPropName(), pathToFirefoxDriver);
-//                System.setProperty(OPERA.getWebDriverPropName(), pathToOperaDriver);
                 log.debug("Properties with information about WebDriver was uploaded to program");
             } catch (FileNotFoundException fnfEx) {
                 log.error("File with properties wasn't found by path src/main/resources/driver.properties", fnfEx);
