@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 
 @Slf4j
 public class MainPage extends BasePage {
-    private final By loginButton = By.cssSelector(".button.desk-notif-card__login-enter-expanded");
+    private final By loginButton = By.cssSelector(".desk-notif-card__login-new-item.desk-notif-card__login-new-item_enter");
     private final By videoButton = By.xpath("//a[@data-id='video']");
     private final By imagesButton = By.xpath("//a[@data-id='images']");
     private final By newsButton = By.xpath("//a[@data-id='news']");
