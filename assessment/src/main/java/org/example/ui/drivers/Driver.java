@@ -67,42 +67,17 @@ public class Driver {
         switch (browser) {
             case FIREFOX:
                 WebDriverManager.firefoxdriver().setup();
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
-                    firefoxOptions.setHeadless(true);
-                    firefoxOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-                }
-                firefoxOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                return new FirefoxDriver(firefoxOptions);
+                return FirefoxWebDriver.getDriver(webDriverProperties);
             case CHROME:
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
-                    chromeOptions.setHeadless(true);
-                    chromeOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-                }
-                chromeOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                return new ChromeDriver(chromeOptions);
+                return ChromeWebDriver.getDriver(webDriverProperties);
             case OPERA:
                 WebDriverManager.operadriver().setup();
-                OperaOptions operaOptions = new OperaOptions();
-                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
-                    operaOptions.addArguments("--headless");
-                    operaOptions.addArguments("--disable-dev-shm-usage");
-                }
-                operaOptions.addArguments("--remote-debugging-port=9222");
-                operaOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                return new OperaDriver(operaOptions);
+                return OperaWebDriver.getDriver(webDriverProperties);
             default:
                 log.warn("Browser wasn't specified, start test with Chrome..");
                 WebDriverManager.chromedriver().setup();
-                ChromeOptions defaultOptions = new ChromeOptions();
-                if (Boolean.parseBoolean(webDriverProperties.getProperty("headless.mode"))) {
-                    defaultOptions.setHeadless(true);
-                    defaultOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage");
-                }
-                defaultOptions.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
-                return new ChromeDriver(defaultOptions);
+                return ChromeWebDriver.getDriver(webDriverProperties);
         }
     }
 }
