@@ -28,6 +28,10 @@ public class MainPage extends BasePage {
     private final By dollarCurrencyStocksRate = By.xpath("//tr[@class='inline-stocks__row_id_1']//i[@class='inline-stocks__cell']");
     private final By searchInput = By.id("text");
     private final By submitSearchButton = By.xpath("//button[@type='submit']");
+    private final By authorizedMailButton = By.xpath("//*[@class='desk-notif-card__mail-title']");
+    private final By accountButton = By.cssSelector(".home-link.usermenu-link__control");
+    private final By userName = By.xpath("//*[@class='usermenu__user-name']");
+    private final By logoutButton = By.xpath("//span[text()='Выйти']/..");
 
     public MainPage(WebDriver driver) {
         super(driver);
@@ -122,5 +126,25 @@ public class MainPage extends BasePage {
 
     public void clickSubmitSearchButton() {
         getClickableElement(submitSearchButton).click();
+    }
+
+    public void clickAuthorizedMailButton() {
+        getClickableElement(authorizedMailButton).click();
+    }
+
+    public void clickAccountButton() {
+        getClickableElement(accountButton).click();
+    }
+
+    public String getUserName() {
+        return getElement(userName).getText();
+    }
+
+    public void clickLogoutButton() {
+        getClickableElement(logoutButton).click();
+    }
+
+    public boolean isLoginButtonDisplayed() {
+        return getClickableElement(loginButton).isDisplayed();
     }
 }

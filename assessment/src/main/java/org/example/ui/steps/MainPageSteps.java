@@ -1,12 +1,15 @@
 package org.example.ui.steps;
 
 import io.qameta.allure.Step;
+import lombok.extern.slf4j.Slf4j;
+import org.example.ui.LogToAllure;
 import org.example.ui.pages.MainPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 
 import java.math.BigDecimal;
 
+@Slf4j
 public class MainPageSteps extends BaseSteps {
     private final MainPage page;
 
@@ -49,6 +52,9 @@ public class MainPageSteps extends BaseSteps {
             case "Музыка":
                 page.clickMusicButton();
                 break;
+            case "Почта":
+                page.clickAuthorizedMailButton();
+                break;
             default:
                 Assertions.fail(String.format("Раздел %s отсутствует на главной странице Яндекс", section));
         }
@@ -83,5 +89,26 @@ public class MainPageSteps extends BaseSteps {
         page.clickSearchInput();
         page.sendTextToSearchInput(searchText);
         page.clickSubmitSearchButton();
+    }
+
+    @Step("Нажать кнопку аккаунта и проверить, что там содержится имя пользователя")
+    public void clickAccountAndCheckUserNameIsContained(String expectedUserName) {
+        page.clickAccountButton();
+        String actualUserName = page.getUserName();
+        log.debug("Actual user name - {}", actualUserName);
+        LogToAllure.logDebug("Actual user name - {}", actualUserName);
+        Assertions.assertTrue(actualUserName.contains(expectedUserName),
+                "Имя пользователя не совпадает с ожидаемым");
+    }
+
+    @Step("Нажать кнопку выхода из аккаунта")
+    public void clickLogOutButton() {
+        page.clickAccountButton();
+        page.clickLogoutButton();
+    }
+
+    @Step("Проверить, что кнопка 'Войти' видимо")
+    public void checkLoginButtonDisplayed() {
+        Assertions.assertTrue(page.isLoginButtonDisplayed(), "Кнопка 'Войти' отсутствует");
     }
 }
