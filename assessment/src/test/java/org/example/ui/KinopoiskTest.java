@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Кинопоиск")
 public class KinopoiskTest extends BaseYandexTest {
-    private final String shawshankRedemptionFilm = "Побег из Шоушенка";
-    private final int shawshankRedemptionFilmReleaseYear = 1994;
 
     private MainPageSteps mainSteps;
     private KinopoiskMainPageSteps kinopoiskMainSteps;
@@ -41,6 +39,8 @@ public class KinopoiskTest extends BaseYandexTest {
     @DisplayName("Проверка поиска фильма на Кинопоиске")
     public void kinopoiskFilmSearchTest() {
         String searchText = "Побег из Ш";
+        String shawshankRedemptionFilm = "Побег из Шоушенка (1994)";
+        int shawshankRedemptionFilmReleaseYear = 1994;
 
         kinopoiskMainSteps.sendTextToSearchInput(searchText);
         kinopoiskMainSteps.chooseFilmFromSuggested(1);

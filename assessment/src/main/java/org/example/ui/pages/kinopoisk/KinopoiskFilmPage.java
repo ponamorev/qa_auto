@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 
 @Slf4j
 public class KinopoiskFilmPage extends BasePage {
-    private final By filmName = By.className("styles_title__2l0HH");
+    private final By filmName = By.xpath("//span[@data-tid='67e47501']");
     private final By filmReleaseYear = By.xpath("//div[text()='Год производства']/parent::div//a");
 
     public KinopoiskFilmPage(WebDriver driver) {
