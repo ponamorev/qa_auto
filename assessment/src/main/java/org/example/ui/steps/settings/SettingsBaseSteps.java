@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Assertions;
 public abstract class SettingsBaseSteps extends BaseSteps {
     @Step("Переключиться на вкладку '{tabName}' в настройках Яндекс")
     protected void clickTabButton(String tabName, SettingsBasePage page) {
-        if (tabName.equals("Язык")) {
+        if (tabName.equals("Общие настройки")) {
             page.switchToLanguageTab();
         } else {
             log.error("Вкладка {} не добавлена для перехода, необходимо дополнить метод", tabName);

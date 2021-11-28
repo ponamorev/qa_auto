@@ -1,14 +1,14 @@
 package org.example.ui.steps.settings;
 
 import io.qameta.allure.Step;
-import org.example.ui.pages.settings.LanguageSettingsPage;
+import org.example.ui.pages.settings.CommonSettingsPage;
 import org.openqa.selenium.WebDriver;
 
-public class LanguageSettingsPageSteps extends SettingsBaseSteps {
-    private final LanguageSettingsPage page;
+public class CommonSettingsPageSteps extends SettingsBaseSteps {
+    private final CommonSettingsPage page;
 
-    public LanguageSettingsPageSteps(WebDriver driver) {
-        page = new LanguageSettingsPage(driver);
+    public CommonSettingsPageSteps(WebDriver driver) {
+        page = new CommonSettingsPage(driver);
     }
 
     @Override

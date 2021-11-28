@@ -3,13 +3,13 @@ package org.example.ui.pages.settings;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LanguageSettingsPage extends SettingsBasePage {
+public class CommonSettingsPage extends SettingsBasePage {
     private final By selectLanguageDropDownButton = By.cssSelector(".select__button");
     private final By englishLanguageOption = By.xpath("//span[text()='English']/parent::div");
     private final By russianLanguageOption = By.xpath("//span[text()='Русский']/parent::div");
     private final By submitButton = By.xpath("//button[@type='submit']");
 
-    public LanguageSettingsPage(WebDriver driver) {
+    public CommonSettingsPage(WebDriver driver) {
         super(driver);
     }
 
