@@ -4,25 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class CommonSettingsPage extends SettingsBasePage {
-    private final By selectLanguageDropDownButton = By.cssSelector(".select__button");
-    private final By englishLanguageOption = By.xpath("//span[text()='English']/parent::div");
-    private final By russianLanguageOption = By.xpath("//span[text()='Русский']/parent::div");
+    private final By languageSelectButton = By.xpath("//select[@name='intl']/preceding-sibling::button");
     private final By submitButton = By.xpath("//button[@type='submit']");
 
     public CommonSettingsPage(WebDriver driver) {
         super(driver);
     }
 
-    public void clickSelectLanguageButton() {
-        getClickableElement(selectLanguageDropDownButton).click();
+    public void clickLanguageSelect() {
+        getClickableElement(languageSelectButton).click();
     }
 
-    public void chooseEnglishLanguage() {
-        getClickableElement(englishLanguageOption).click();
-    }
-
-    public void chooseRussianLanguage() {
-        getClickableElement(russianLanguageOption).click();
+    public void chooseLanguage(String lang) {
+        String languageOptionTemplate = "//span[text()='%s']/parent::div";
+        getClickableElement(By.xpath(String.format(languageOptionTemplate, lang))).click();
     }
 
     public void clickSubmitButton() {

@@ -19,15 +19,15 @@ public class CommonSettingsPageSteps extends SettingsBaseSteps {
 
     @Step("Выбрать английский язык в списке языков")
     public void chooseEnglishLanguage() {
-        page.clickSelectLanguageButton();
-        page.chooseEnglishLanguage();
+        page.clickLanguageSelect();
+        page.chooseLanguage("English");
         page.clickSubmitButton();
     }
 
     @Step("Выбрать русский язык в списке языков")
     public void chooseRussianLanguage() {
-        page.clickSelectLanguageButton();
-        page.chooseRussianLanguage();
+        page.clickLanguageSelect();
+        page.chooseLanguage("Русский");
         page.clickSubmitButton();
     }
 }
