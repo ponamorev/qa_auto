@@ -72,11 +72,6 @@ public class MainPageSteps extends BaseSteps {
         page.clickPortalSettingsButton();
     }
 
-    @Step("Нажать кнопку 'Ещё' рядом с котировками")
-    public void clickMoreStocksButton() {
-        page.clickMoreStocksButton();
-    }
-
     @Step("Проверить, что курс доллара больше {rubles}")
     public void checkDollarsCurrencyRateMoreThanExpected(BigDecimal rubles) {
         Assertions.assertTrue(page.getDollarCurrencyRate().compareTo(rubles) > 0,

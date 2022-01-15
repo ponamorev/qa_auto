@@ -26,8 +26,7 @@ public class MainPage extends BasePage {
     private final By kinopoiskButton = By.xpath("//a[@data-id='kinopoisk_old']");
     private final By settingsDropDownMenuButton = By.xpath("//a[@data-statlog='foot.settings']");
     private final By portalSettingsButton = By.xpath("//a[@data-statlog='head.settings.other']");
-    private final By moreStocksButton = By.xpath("//span[@data-statlog='news_rates_manual.more']");
-    private final By dollarCurrencyStocksRate = By.xpath("//tr[@class='inline-stocks__row_id_1']//i[@class='inline-stocks__cell']");
+    private final By dollarCurrencyStocksRate = By.xpath("(//div[contains(text(),'USD')])[1]/../following-sibling::div[@class='stocks-new__item-right']/div[@class='stocks-new__item-value']");
     private final By searchInput = By.id("text");
     private final By submitSearchButton = By.xpath("//button[@type='submit']");
     private final By authorizedMailButton = By.xpath("//*[@class='desk-notif-card__mail-title']");
@@ -105,13 +104,9 @@ public class MainPage extends BasePage {
         getClickableElement(portalSettingsButton).click();
     }
 
-    public void clickMoreStocksButton() {
-        getClickableElement(moreStocksButton).click();
-    }
-
     public BigDecimal getDollarCurrencyRate() {
         String dollarRate = getElement(dollarCurrencyStocksRate).getText();
-        dollarRate = dollarRate.replace(",", ".");
+        dollarRate = dollarRate.replace(",", ".").substring(0, dollarRate.length() - 2);
         try {
             return new BigDecimal(dollarRate);
         } catch (NumberFormatException e) {
