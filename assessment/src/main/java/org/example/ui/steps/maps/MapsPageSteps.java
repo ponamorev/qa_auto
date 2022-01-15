@@ -26,14 +26,4 @@ public class MapsPageSteps extends BaseSteps {
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Карты не совпадает с ожидаемым");
     }
-
-    @Step("Нажать кнопку 'Актуальное'")
-    public void clickActualButton() {
-        page.clickActualButton();
-    }
-
-    @Step("Нажать ссылку карты распространения коронавируса")
-    public void clickCovidMapsLink() {
-        page.clickCovidMapsLink();
-    }
 }
