@@ -29,6 +29,7 @@ public class LoginYandexTest extends BaseYandexTest {
         loginSteps.setLoginAndSubmit(loginName);
         loginSteps.setPasswordAndSubmit(loginPass);
         loginSteps.waitForNewPageLoadingAfterPasswordSubmitting();
+        loginSteps.clickConfirmLaterButtonIfDisplayed();
         mainSteps.waitForPageToBeLoaded();
         mainSteps.clickAccountAndCheckUserNameIsContained(loginName);
     }
