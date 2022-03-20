@@ -40,8 +40,7 @@ public abstract class BaseSteps {
 
     public abstract void waitForPageToBeLoaded();
 
-    public void checkPageHaveBeenLoaded() {
-    }
+    public void checkPageHasBeenLoaded() {}
 
     @Attachment(value = "Снимок экрана", type = "image/png")
     protected static byte[] saveScreenshot(byte[] screenShot) {

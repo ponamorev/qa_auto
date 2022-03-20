@@ -56,12 +56,11 @@ public class YandexMainTest extends BaseYandexTest {
     }
 
     @Test
-    @DisplayName("Проверка, что курс доллара по-прежнему больше 75 рублей за 1$")
+    @DisplayName("Проверка, что курс доллара по-прежнему больше 70 рублей за 1$")
     public void dollarToRubleTest() {
-        BigDecimal rubles = new BigDecimal("75");
+        BigDecimal rubles = new BigDecimal("70");
 
         mainSteps.waitForPageToBeLoaded();
-        mainSteps.clickMoreStocksButton();
         mainSteps.checkDollarsCurrencyRateMoreThanExpected(rubles);
     }
 
@@ -71,6 +70,6 @@ public class YandexMainTest extends BaseYandexTest {
         mainSteps.clickNavigationButton(section);
         mainSteps.switchToNewTabAndClosePrevious(driver);
         steps.waitForPageToBeLoaded();
-        steps.checkPageHaveBeenLoaded();
+        steps.checkPageHasBeenLoaded();
     }
 }

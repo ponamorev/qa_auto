@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
 
 @DisplayName("Кинопоиск")
 public class KinopoiskTest extends BaseYandexTest {
-    private final String shawshankRedemptionFilm = "Побег из Шоушенка";
-    private final int shawshankRedemptionFilmReleaseYear = 1994;
 
     private MainPageSteps mainSteps;
     private KinopoiskMainPageSteps kinopoiskMainSteps;
@@ -41,6 +39,8 @@ public class KinopoiskTest extends BaseYandexTest {
     @DisplayName("Проверка поиска фильма на Кинопоиске")
     public void kinopoiskFilmSearchTest() {
         String searchText = "Побег из Ш";
+        String shawshankRedemptionFilm = "Побег из Шоушенка (1994)";
+        int shawshankRedemptionFilmReleaseYear = 1994;
 
         kinopoiskMainSteps.sendTextToSearchInput(searchText);
         kinopoiskMainSteps.chooseFilmFromSuggested(1);
@@ -51,7 +51,7 @@ public class KinopoiskTest extends BaseYandexTest {
     @Test
     @DisplayName("Проверка первого фильма из списка 250 лучших фильмов")
     public void checkFirstFilmFromListTest() {
-        String filmName = "Зеленая миля";
+        String filmName = "The Green Mile";
         int releaseYear = 1999;
 
         kinopoiskMainSteps.clickFilmListLink();
@@ -67,6 +67,7 @@ public class KinopoiskTest extends BaseYandexTest {
         String country = "Россия";
         String sportGenre = "спорт";
         String musicGenre = "музыка";
+        int tillYear = 2019;
         String filmName = "Время ДДТ";
         int filmReleaseYear = 2002;
 
@@ -74,6 +75,7 @@ public class KinopoiskTest extends BaseYandexTest {
         advancedSearchSteps.waitForPageToBeLoaded();
         advancedSearchSteps.selectCountry(country);
         advancedSearchSteps.selectGenres(sportGenre, musicGenre);
+        advancedSearchSteps.selectTillYear(tillYear);
         advancedSearchSteps.clickSubmitFilmSearchButton();
         searchResultSteps.waitForPageToBeLoaded();
         searchResultSteps.checkFirstResultFilmNameAndReleaseYear(filmName, filmReleaseYear);

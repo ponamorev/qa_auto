@@ -29,6 +29,11 @@ public class AdvancedSearchPageSteps extends BaseSteps {
         page.selectGenres(genres);
     }
 
+    @Step("Указать верхнюю границу по дате выхода фильма")
+    public void selectTillYear(int year) {
+        page.selectTillYear(year);
+    }
+
     @Step("Нажать кнопку 'Поиск'")
     public void clickSubmitFilmSearchButton() {
         page.clickSubmitFilmSearchButton();

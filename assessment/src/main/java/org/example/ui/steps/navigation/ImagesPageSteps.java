@@ -21,8 +21,8 @@ public class ImagesPageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Картинки была загружена")
-    public void checkPageHaveBeenLoaded() {
-        String expectedPageTitle = "Яндекс.Картинки: поиск изображений в интернете, поиск по картинке";
+    public void checkPageHasBeenLoaded() {
+        String expectedPageTitle = "Яндекс.Картинки: поиск изображений в интернете, поиск по изображению";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Картинки не совпадает с ожидаемым");
     }
