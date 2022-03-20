@@ -51,7 +51,7 @@ public class KinopoiskTest extends BaseYandexTest {
     @Test
     @DisplayName("Проверка первого фильма из списка 250 лучших фильмов")
     public void checkFirstFilmFromListTest() {
-        String filmName = "Зеленая миля";
+        String filmName = "The Green Mile";
         int releaseYear = 1999;
 
         kinopoiskMainSteps.clickFilmListLink();

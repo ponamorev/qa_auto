@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 public class KinopoiskMainPage extends BasePage {
     private final By searchInput = By.xpath("//input");
     private final By suggestedSearchOptions = By.cssSelector(".kinopoisk-header-suggest-item");
-    private final By filmListLink = By.xpath("//div[@class='styles_root__2x6ci']/a[text()='Фильмы']");
+    private final By filmListLink = By.xpath("//div[@class='styles_root__15y8a']/a[text()='Фильмы']");
     private final By menuButton = By.xpath("//button[@data-tid='c1df441f']");
     private final By filmListMenuLink = By.xpath("(//a[text()='Списки фильмов'])[1]");
     private final By advancedSearchSettingsButton = By.xpath("//a[@aria-label='advanced-search']");

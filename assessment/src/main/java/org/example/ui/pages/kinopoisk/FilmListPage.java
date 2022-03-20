@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public class FilmListPage extends BasePage {
-    private final By top250FilmLink = By.xpath("//div[@class='film-lists__content']//span[contains(text(),'250')]//ancestor::a");
-    private final By firstFilmResultTitles = By.xpath("//div[@class='desktop-rating-selection-film-item'][1]//p");
+    private final By top250FilmLink = By.xpath("//span[contains(text(),'250')]//ancestor::a");
+    private final By firstFilmResultTitles = By.xpath("(//div[@data-tid='8a6cbb06'])[1]//span[@class='desktop-list-main-info_secondaryText__1ov2X']");
 
     public FilmListPage(WebDriver driver) {
         super(driver);
