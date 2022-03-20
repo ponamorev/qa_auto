@@ -21,7 +21,7 @@ public class NewsPageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Новости была загружена")
-    public void checkPageHaveBeenLoaded() {
+    public void checkPageHasBeenLoaded() {
         String expectedPageTitle = "Яндекс.Новости: Главные новости сегодня, самые свежие и последние новости России онлайн";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Новости не совпадает с ожидаемым");

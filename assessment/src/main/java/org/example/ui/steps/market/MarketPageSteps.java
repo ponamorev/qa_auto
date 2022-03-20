@@ -21,8 +21,8 @@ public class MarketPageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Маркет была загружена")
-    public void checkPageHaveBeenLoaded() {
-        String expectedPageTitle = "Яндекс.Маркет — выбор и покупка товаров из проверенных интернет-магазинов";
+    public void checkPageHasBeenLoaded() {
+        String expectedPageTitle = "Яндекс.Маркет — покупки с быстрой доставкой";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Маркет не совпадает с ожидаемым");
     }

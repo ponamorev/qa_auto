@@ -1,9 +1,17 @@
 package org.example.ui.drivers;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.opera.OperaOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -43,12 +51,6 @@ public class Driver {
             webDriverProperties = new Properties();
             try (FileInputStream inputStream = new FileInputStream("src/main/resources/driver.properties")) {
                 webDriverProperties.load(inputStream);
-                String pathToChromeDriver = webDriverProperties.getProperty(CHROME.getWebDriverPropName());
-                String pathToFirefoxDriver = webDriverProperties.getProperty(FIREFOX.getWebDriverPropName());
-                String pathToOperaDriver = webDriverProperties.getProperty(OPERA.getWebDriverPropName());
-                System.setProperty(CHROME.getWebDriverPropName(), pathToChromeDriver);
-                System.setProperty(FIREFOX.getWebDriverPropName(), pathToFirefoxDriver);
-                System.setProperty(OPERA.getWebDriverPropName(), pathToOperaDriver);
                 log.debug("Properties with information about WebDriver was uploaded to program");
             } catch (FileNotFoundException fnfEx) {
                 log.error("File with properties wasn't found by path src/main/resources/driver.properties", fnfEx);
@@ -64,13 +66,17 @@ public class Driver {
         Browser browser = Browser.valueOf(browserName);
         switch (browser) {
             case FIREFOX:
+                WebDriverManager.firefoxdriver().setup();
                 return FirefoxWebDriver.getDriver(webDriverProperties);
             case CHROME:
+                WebDriverManager.chromedriver().setup();
                 return ChromeWebDriver.getDriver(webDriverProperties);
             case OPERA:
+                WebDriverManager.operadriver().setup();
                 return OperaWebDriver.getDriver(webDriverProperties);
             default:
                 log.warn("Browser wasn't specified, start test with Chrome..");
+                WebDriverManager.chromedriver().setup();
                 return ChromeWebDriver.getDriver(webDriverProperties);
         }
     }

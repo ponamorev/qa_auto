@@ -21,8 +21,8 @@ public class VideoPageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Видео была загружена")
-    public void checkPageHaveBeenLoaded() {
-        String expectedPageTitle = "Подборки видео для вас — Яндекс.Видео";
+    public void checkPageHasBeenLoaded() {
+        String expectedPageTitle = "видео: 4 тыс. видео найдено в Яндексе";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Видео не совпадает с ожидаемым");
     }

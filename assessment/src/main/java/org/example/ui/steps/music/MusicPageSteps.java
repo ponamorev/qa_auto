@@ -21,7 +21,7 @@ public class MusicPageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Музыка была загружена")
-    public void checkPageHaveBeenLoaded() {
+    public void checkPageHasBeenLoaded() {
         String expectedPageTitle = "Яндекс.Музыка — собираем музыку и подкасты для вас";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Музыка не совпадает с ожидаемым");

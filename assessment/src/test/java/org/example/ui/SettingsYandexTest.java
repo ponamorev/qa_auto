@@ -1,7 +1,7 @@
 package org.example.ui;
 
 import org.example.ui.steps.MainPageSteps;
-import org.example.ui.steps.settings.LanguageSettingsPageSteps;
+import org.example.ui.steps.settings.CommonSettingsPageSteps;
 import org.example.ui.steps.settings.SearchSettingsPageSteps;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,9 +9,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 @DisplayName("Язык")
-public class LanguageYandexTest extends BaseYandexTest {
+public class SettingsYandexTest extends BaseYandexTest {
     private MainPageSteps mainSteps;
-    private LanguageSettingsPageSteps languageSteps;
+    private CommonSettingsPageSteps commonSettingsSteps;
     private SearchSettingsPageSteps searchSteps;
 
     @BeforeEach
@@ -20,7 +20,7 @@ public class LanguageYandexTest extends BaseYandexTest {
         driver.get(yandexMainPageUrl);
 
         mainSteps = new MainPageSteps(driver);
-        languageSteps = new LanguageSettingsPageSteps(driver);
+        commonSettingsSteps = new CommonSettingsPageSteps(driver);
         searchSteps = new SearchSettingsPageSteps(driver);
     }
 
@@ -30,9 +30,9 @@ public class LanguageYandexTest extends BaseYandexTest {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.goToSettingsPage();
         searchSteps.waitForPageToBeLoaded();
-        searchSteps.clickTabButton("Язык");
-        languageSteps.waitForPageToBeLoaded();
-        languageSteps.chooseEnglishLanguage();
+        searchSteps.clickTabButton("Общие настройки");
+        commonSettingsSteps.waitForPageToBeLoaded();
+        commonSettingsSteps.chooseEnglishLanguage();
         mainSteps.waitForPageToBeLoaded();
         mainSteps.goToSettingsPage();
         searchSteps.waitForPageToBeLoaded();
@@ -45,9 +45,9 @@ public class LanguageYandexTest extends BaseYandexTest {
         mainSteps.waitForPageToBeLoaded();
         mainSteps.goToSettingsPage();
         searchSteps.waitForPageToBeLoaded();
-        searchSteps.clickTabButton("Язык");
-        languageSteps.waitForPageToBeLoaded();
-        languageSteps.chooseRussianLanguage();
+        searchSteps.clickTabButton("Общие настройки");
+        commonSettingsSteps.waitForPageToBeLoaded();
+        commonSettingsSteps.chooseRussianLanguage();
         mainSteps.waitForPageToBeLoaded();
         mainSteps.goToSettingsPage();
         searchSteps.waitForPageToBeLoaded();

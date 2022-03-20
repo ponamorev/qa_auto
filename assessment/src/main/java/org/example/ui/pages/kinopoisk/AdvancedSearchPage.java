@@ -18,6 +18,7 @@ import java.util.List;
 public class AdvancedSearchPage extends BasePage {
     private final By countrySelect = By.id("country");
     private final By genresWindow = By.cssSelector(".el_6.__genreSB__");
+    private final By tillYearDropDown = By.cssSelector(".__yearSB2__");
     private final By submitFilmSearchButton = By.cssSelector(".el_18.submit");
 
     public AdvancedSearchPage(WebDriver driver) {
@@ -38,6 +39,11 @@ public class AdvancedSearchPage extends BasePage {
         for (String genre : genres) {
             select.selectByVisibleText(genre);
         }
+    }
+
+    public void selectTillYear(int year) {
+        Select select = new Select(getElement(tillYearDropDown));
+        select.selectByValue(String.valueOf(year));
     }
 
     public void clickSubmitFilmSearchButton() {

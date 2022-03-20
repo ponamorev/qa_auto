@@ -21,19 +21,9 @@ public class MapsPageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Карты была загружена")
-    public void checkPageHaveBeenLoaded() {
-        String expectedPageTitle = "Яндекс.Карты — поиск мест и адресов, городской транспорт";
+    public void checkPageHasBeenLoaded() {
+        String expectedPageTitle = "Яндекс.Карты — транспорт, навигация, поиск мест";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Карты не совпадает с ожидаемым");
-    }
-
-    @Step("Нажать кнопку 'Актуальное'")
-    public void clickActualButton() {
-        page.clickActualButton();
-    }
-
-    @Step("Нажать ссылку карты распространения коронавируса")
-    public void clickCovidMapsLink() {
-        page.clickCovidMapsLink();
     }
 }

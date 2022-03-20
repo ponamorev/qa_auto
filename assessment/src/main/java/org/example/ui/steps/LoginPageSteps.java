@@ -32,6 +32,16 @@ public class LoginPageSteps extends BaseSteps {
         setPasswordAndSubmit(password);
     }
 
+    @Step("Нажать кнопку \"Не сейчас\", если она отображается")
+    public void clickConfirmLaterButtonIfDisplayed() {
+        page.waitForPageToBeLoaded();
+        if (page.isConfirmLaterButtonDisplayed()) {
+            page.clickConfirmLaterButton();
+        } else {
+            System.err.println("Confirm button isn't displayed");
+        }
+    }
+
     @Step("Ожидание загрузки новой страницы после введения пароля")
     public void waitForNewPageLoadingAfterPasswordSubmitting() {
         Assertions.assertTrue(page.isSubmitButtonStale(), "Кнопка подтверждения входа не исчезла, новая страница не загружена");

@@ -7,10 +7,11 @@ import org.openqa.selenium.WebDriver;
 public class KinopoiskMainPage extends BasePage {
     private final By searchInput = By.xpath("//input");
     private final By suggestedSearchOptions = By.cssSelector(".kinopoisk-header-suggest-item");
-    private final By filmListLink = By.xpath("(//a[text()='Списки фильмов'])[2]");
+    private final By filmListLink = By.xpath("//div[@class='styles_root__15y8a']/a[text()='Фильмы']");
     private final By menuButton = By.xpath("//button[@data-tid='c1df441f']");
     private final By filmListMenuLink = By.xpath("(//a[text()='Списки фильмов'])[1]");
-    private final By advancedSearchSettingsButton = By.className("_1dp226jcDt_jum2k1IGKC_");
+    private final By advancedSearchSettingsButton = By.xpath("//a[@aria-label='advanced-search']");
+    private final By filmsButton = By.xpath("//div[@class='styles_sticky__2sNvj']//a[text()='Фильмы']");
 
     public KinopoiskMainPage(WebDriver driver) {
         super(driver);
@@ -46,5 +47,9 @@ public class KinopoiskMainPage extends BasePage {
 
     public void clickAdvancedSearchSettingsButton() {
         getClickableElement(advancedSearchSettingsButton).click();
+    }
+
+    public void clickFilmsButton() {
+        getClickableElement(filmsButton).click();
     }
 }

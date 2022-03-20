@@ -21,7 +21,7 @@ public class TranslatePageSteps extends BaseSteps {
 
     @Override
     @Step("Проверить, что страница с Яндекс.Переводчик была загружена")
-    public void checkPageHaveBeenLoaded() {
+    public void checkPageHasBeenLoaded() {
         String expectedPageTitle = "Яндекс.Переводчик – словарь и онлайн перевод на английский, русский, немецкий, французский, украинский и другие языки.";
         Assertions.assertEquals(expectedPageTitle, page.getPageTitle(),
                 "Заголовок страницы Яндекс.Переводчик не совпадает с ожидаемым");

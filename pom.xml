@@ -18,13 +18,13 @@
 
     <properties>
         <encoding>UTF-8</encoding>
-        <java.version>1.8</java.version>
-        <selenium.version>3.141.59</selenium.version>
-        <lombok.version>1.18.12</lombok.version>
-        <logger.version>1.2.3</logger.version>
-        <junit.jupiter.version>5.7.0</junit.jupiter.version>
+        <java.version>11</java.version>
+        <selenium.version>4.1.2</selenium.version>
+        <lombok.version>1.18.22</lombok.version>
+        <logger.version>1.2.11</logger.version>
+        <junit.jupiter.version>5.8.2</junit.jupiter.version>
         <aspectj.version>1.9.5</aspectj.version>
-        <allure.version>2.13.6</allure.version>
+        <allure.version>2.17.3</allure.version>
     </properties>
 
     <build>
