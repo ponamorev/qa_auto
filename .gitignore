@@ -4,8 +4,7 @@ out/
 *.iml
 log/
 */*.iml
-*/allure-results
-*/.allure
+allure-results/
 .allure
-*/2020*/
-*/allure-report*
+allure-report*
+.DS_Store
