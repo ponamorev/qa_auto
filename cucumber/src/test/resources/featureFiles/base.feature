@@ -6,5 +6,5 @@ Feature: Search on Yandex
     Then Result page is reached
 
     Examples:
-    | website | text   |
-    | "ya.ru" | "Java" |
+    | website       | text |
+    | https://ya.ru | Java |

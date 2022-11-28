@@ -4,13 +4,12 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
 import org.example.pages.SearchPage;
-import org.openqa.selenium.WebDriver;
 
 public class SearchSteps extends BaseSteps {
     private final SearchPage page;
 
-    public SearchSteps(WebDriver driver) {
-        super(driver);
+    public SearchSteps() {
+        super();
         page = new SearchPage(driver);
     }
 
