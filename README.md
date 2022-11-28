@@ -4,7 +4,7 @@ This repository has only educational purpose. Main goal of the repository is try
 
 A main stack:
 
-- Java (at least 1.8)
+- Java (at least 11)
 - Maven
 
 For any questions related to the repository - contact me via email (penzayk@mail.ru)
