@@ -17,7 +17,6 @@ import org.testng.annotations.Test;
 )
 public class TestRunner {
     private TestNGCucumberRunner runner;
-    // TODO: can't use driver here because of impossibility of providing it to steps
     private WebDriver driver;
 
     @BeforeSuite(alwaysRun = true)
@@ -38,7 +37,7 @@ public class TestRunner {
 
     @AfterSuite(alwaysRun = true)
     public void tearDownClass() {
-        driver.quit();
+        Driver.quitDriver();
         runner.finish();
     }
 }

@@ -4,7 +4,8 @@ Feature: Search on Yandex
     When User puts "<text>" to an input
     And User clicks Search Button
     Then Result page is reached
+    And The first result has title "<title>"
 
     Examples:
-    | website       | text |
-    | https://ya.ru | Java |
+    | website       | text | title          |
+    | https://ya.ru | Java | Java \| Oracle |
