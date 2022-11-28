@@ -2,7 +2,6 @@ package org.example.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 public class SearchPage extends BasePage {
     private final By searchInput = By.id("text");

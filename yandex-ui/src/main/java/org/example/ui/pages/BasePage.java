@@ -15,6 +15,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Objects;
 
 import static org.example.ui.LogToAllure.logDebug;
@@ -30,7 +31,7 @@ public abstract class BasePage {
     }
 
     public void waitForPageToBeLoaded() {
-        WebDriverWait pageLoadWaiter = new WebDriverWait(driver, 10);
+        WebDriverWait pageLoadWaiter = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
             pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
         } catch (TimeoutException e) {
@@ -79,8 +80,8 @@ public abstract class BasePage {
         }
         try {
             foundElement = isClickable
-                    ? new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(element))
-                    : new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOfElementLocated(element));
+                    ? new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.elementToBeClickable(element))
+                    : new WebDriverWait(driver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(element));
             log.debug("Found element [{}] after explicit wait", element);
             logDebug("Found element [{}] after explicit wait", element);
         } catch (TimeoutException e) {

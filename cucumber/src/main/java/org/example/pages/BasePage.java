@@ -1,6 +1,9 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -14,6 +17,15 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
+    }
+
+    public void waitForPageToBeLoaded() {
+        WebDriverWait pageLoadWaiter = new WebDriverWait(driver, Duration.ofSeconds(defaultTimeout));
+        try {
+            pageLoadWaiter.until(driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+        } catch (TimeoutException e) {
+            System.err.println("Can't load the page");
+        }
     }
 
     protected void ensureElementIsVisible(By locator) {
