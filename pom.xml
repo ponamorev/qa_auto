@@ -13,6 +13,7 @@
         <module>ui</module>
         <module>yandex-ui</module>
         <module>patterns</module>
+        <module>cucumber</module>
     </modules>
 
     <properties>
