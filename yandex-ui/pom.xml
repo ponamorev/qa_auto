@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>assessment</artifactId>
+    <artifactId>yandex-ui</artifactId>
 
     <properties>
         <awaitility.version>4.2.0</awaitility.version>
