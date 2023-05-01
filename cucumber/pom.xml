@@ -13,7 +13,7 @@
 
     <properties>
         <cucumber.version>7.8.1</cucumber.version>
-        <testng.version>7.6.1</testng.version>
+        <testng.version>7.7.0</testng.version>
         <webdriver.manager.version>5.3.1</webdriver.manager.version>
     </properties>
 
